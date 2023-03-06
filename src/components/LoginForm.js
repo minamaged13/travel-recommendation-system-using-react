@@ -1,43 +1,53 @@
-import { Fragment, useState } from "react";
-import Link from "next/link";
+import {Fragment, useState} from 'react';
+import Link from 'next/link';
 
 const LoginForm = () => {
-  const [enteredPassword, setEnteredPassword] = useState("");
-  const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
-  const enteredEmailIsValid = enteredEmail.includes("@");
+  const [enteredPassword, setEnteredPassword] = useState ('');
+  const [enteredPasswordTouched, setEnteredPasswordTouched] = useState (false);
+  const [enteredEmail, setEnteredEmail] = useState ('');
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState (false);
+  const enteredEmailIsValid = enteredEmail.includes ('@');
   const enteredEmailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 
   const enteredPasswordIsValid = enteredPassword.length >= 8;
-  const passwordInputChangeHandler = (e) => {
-    setEnteredPassword(e.target.value);
+  const passwordInputChangeHandler = e => {
+    setEnteredPassword (e.target.value);
   };
-  const passwordInputBlurHandler = (event) => {
-    setEnteredPasswordTouched(true);
+  const passwordInputBlurHandler = event => {
+    setEnteredPasswordTouched (true);
   };
-  const emailInputChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
+  const emailInputChangeHandler = event => {
+    setEnteredEmail (event.target.value);
   };
-  const emailInputBlurHandler = (event) => {
-    setEnteredEmailTouched(true);
+  const emailInputBlurHandler = event => {
+    setEnteredEmailTouched (true);
   };
-  const formSubmissionHandler = (event) => {
-    event.preventDefault();
-    userAction();
-   
+  const formSubmissionHandler = event => {
+    event.preventDefault ();
+    login ();
   };
-  const userAction = async () => {
-    const response = await fetch(process.env["backendUrl"]+ "/users", {
+  async function login () {
+    await fetch ('http://localhost:4000/user/login', {
       method: 'POST',
-      body: [enteredEmail,enteredPassword],
       headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const myJson = await response.json(); //extract JSON from the http response
-    // do something with myJson
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify ({
+        email: enteredEmail,
+        password: enteredPassword,
+      }),
+    })
+      .then (response => {
+        console.log ('Response ---------->');
+        const data = await response.json ();
+        console.log (data);
+        console.log ('hiiiiiiiii');
+        console.log (response.body.user);
+      })
+      // .then (data => console.log (data))
+      .catch (error => console.error (error));
   }
+
   let formIsValid = false;
 
   if (enteredEmailIsValid && enteredPasswordIsValid) {
@@ -61,11 +71,10 @@ const LoginForm = () => {
               value={enteredEmail}
               required
             />
-            {enteredEmailIsInvalid && (
+            {enteredEmailIsInvalid &&
               <p className=" text-red-700 text-lg">
                 Please enter a valid email.
-              </p>
-            )}
+              </p>}
           </div>
           <div className=" ml-8 mb-6">
             <label htmlFor="password">password</label>
@@ -77,7 +86,7 @@ const LoginForm = () => {
               onChange={passwordInputChangeHandler}
               onBlur={passwordInputBlurHandler}
               required
-            ></input>
+            />
           </div>
 
           <div className="">
@@ -88,12 +97,12 @@ const LoginForm = () => {
               Submit
             </button>
             <Link href="/register" className="text-sm">
-              {" "}
+              {' '}
               dont have account?
             </Link>
           </div>
         </div>
-       
+
       </form>
     </Fragment>
   );
