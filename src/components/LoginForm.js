@@ -1,16 +1,15 @@
-import { Fragment,useState } from "react";
-import  Link  from "next/link";
+import { Fragment, useState } from "react";
+import Link from "next/link";
 
-const LoginForm=()=>{
-    const [enteredPassword, setEnteredPassword] = useState("");
+const LoginForm = () => {
+  const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
   const enteredEmailIsValid = enteredEmail.includes("@");
   const enteredEmailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 
-  const enteredPasswordIsValid =
-    enteredPassword.length >= 8 
+  const enteredPasswordIsValid = enteredPassword.length >= 8;
   const passwordInputChangeHandler = (e) => {
     setEnteredPassword(e.target.value);
   };
@@ -24,23 +23,20 @@ const LoginForm=()=>{
     setEnteredEmailTouched(true);
   };
   const formSubmissionHandler = (event) => {
-  
     event.preventDefault();
-   
   };
   let formIsValid = false;
 
-  if ( enteredEmailIsValid && enteredPasswordIsValid) {
+  if (enteredEmailIsValid && enteredPasswordIsValid) {
     formIsValid = true;
   }
-return <Fragment>
-    <form
+  return (
+    <Fragment>
+      <form
         onSubmit={formSubmissionHandler}
         className="flex flex-col justify-center items-center    "
       >
         <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-4 border-black rounded-3xl border-solid  bg-stromi-400 ">
-         
-      
           <div className="ml-8 mb-6">
             <label htmlFor="email">Your E-Mail</label>
             <input
@@ -69,9 +65,8 @@ return <Fragment>
               onBlur={passwordInputBlurHandler}
               required
             ></input>
-           
           </div>
-         
+
           <div className="">
             <button
               className="ml-8 disabled:cursor-not-allowed disabled:bg-black bg-stromi-200 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
@@ -79,10 +74,15 @@ return <Fragment>
             >
               Submit
             </button>
-            <Link href='/register' className="text-sm"> dont have account?</Link>
+            <Link href="/register" className="text-sm">
+              {" "}
+              dont have account?
+            </Link>
           </div>
         </div>
+       
       </form>
-</Fragment>
-}
+    </Fragment>
+  );
+};
 export default LoginForm;
