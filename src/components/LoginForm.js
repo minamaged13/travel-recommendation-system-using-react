@@ -24,7 +24,20 @@ const LoginForm = () => {
   };
   const formSubmissionHandler = (event) => {
     event.preventDefault();
+    userAction();
+   
   };
+  const userAction = async () => {
+    const response = await fetch(process.env["backendUrl"]+ "/users", {
+      method: 'POST',
+      body: [enteredEmail,enteredPassword],
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const myJson = await response.json(); //extract JSON from the http response
+    // do something with myJson
+  }
   let formIsValid = false;
 
   if (enteredEmailIsValid && enteredPasswordIsValid) {
