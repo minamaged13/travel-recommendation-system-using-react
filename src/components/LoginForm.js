@@ -1,5 +1,6 @@
 import {Fragment, useState} from 'react';
 import Link from 'next/link';
+import User from '@/models/User';
 
 const LoginForm = () => {
   const [enteredPassword, setEnteredPassword] = useState ('');
@@ -27,7 +28,8 @@ const LoginForm = () => {
     login ();
   };
   async function login () {
-    await fetch ('http://localhost:4000/user/login', {
+    const backendUrl=process.env.NEXT_PUBLIC_BACKEND_URL;
+    await fetch (backendUrl+'/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,15 +39,17 @@ const LoginForm = () => {
         password: enteredPassword,
       }),
     })
-      .then (response => {
-        console.log ('Response ---------->');
-        const data = await response.json ();
-        console.log (data);
-        console.log ('hiiiiiiiii');
-        console.log (response.body.user);
+      .then ( async response => {
+        if(response.status == 404){
+          console.log("user not found");
+        }
+        else{
+          console.log ('Response ---------->');
+          const data = await response.json ();
+          console.log (data);
+        }
       })
-      // .then (data => console.log (data))
-      .catch (error => console.error (error));
+      .catch (error => console.error ("Error at login "+error));
   }
 
   let formIsValid = false;
