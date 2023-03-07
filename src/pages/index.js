@@ -26,7 +26,7 @@ export default function Home() {
     <div>
       <div className="capitalize box-content h-screen  flex justify-between  bg-blue-500">
         <p className="font-mono text-7xl mt-48 ml-12"> egypt <br/>is waiting for you  </p>
-      <iframe className="rounded-lg m-10 mt-40" width="560" height="315" src="https://www.youtube.com/embed/BapSQFJPMM0?autoplay=1 " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe>
+      <iframe className="rounded-lg m-10 mt-40" width="700" height="350" src="https://www.youtube.com/embed/BapSQFJPMM0?autoplay=1 " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe>
       </div>
       <div className="capitalize  h-screen flex justify-between pt-32 font-mono  bg-red-500">
         <h1 className="text-7xl font-mono  text-black ml-16   ">
