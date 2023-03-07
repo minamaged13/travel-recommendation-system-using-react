@@ -27,7 +27,7 @@ const Form = () => {
   const enteredEmailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 
   const enteredPasswordIsValid =
-    enteredPassword.length >= 8 && enteredConfirmPassword === enteredPassword;
+    enteredPassword.length >= 8 && enteredConfirmPassword === enteredPassword && enteredPasswordTouched;
 
   let formIsValid = false;
 
@@ -96,13 +96,13 @@ const Form = () => {
       {!formSubmitted && (
         <form
           onSubmit={formSubmissionHandler}
-          className="flex flex-col justify-center items-center    "
+          className="flex flex-col justify-center items-center pt-9  "
         >
-          <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-4 border-black rounded-3xl border-solid  bg-stromi-400 ">
-            <div className=" ml-8 mb-6 ">
+          <div className="capitalize font-mono text-2xl w-1/3  font-bold-300 text-white m-9 p-6 shadow-2xl border border-4 border-black rounded-3xl border-solid  bg-blue-500 ">
+            <div className=" ml-20 mb-6 ">
               <label htmlFor="name">Your Name</label>
               <input
-                className=" flex border border-black   "
+                className=" flex border rounded-xl    "
                 type="text"
                 id="name"
                 onChange={nameInputChangeHandler}
@@ -114,10 +114,10 @@ const Form = () => {
                 <p className="text-red-700 text-lg">Name must not be empty.</p>
               )}
             </div>
-            <div className="ml-8 mb-6">
+            <div className="ml-20 mb-6">
               <label htmlFor="email">Your E-Mail</label>
               <input
-                className=" flex border border-black   "
+                className=" flex border rounded-xl    "
                 type="email"
                 id="email"
                 onChange={emailInputChangeHandler}
@@ -131,10 +131,10 @@ const Form = () => {
                 </p>
               )}
             </div>
-            <div className=" ml-8 mb-6">
+            <div className=" ml-20 mb-6">
               <label htmlFor="password">password</label>
               <input
-                className=" flex border border-black   "
+                className=" flex border rounded-xl    "
                 type="password"
                 id="password"
                 value={enteredPassword}
@@ -143,13 +143,13 @@ const Form = () => {
                 required
               ></input>
               {enteredPassword.length < 8 && (
-                <p className="text-lg text-red-700 ">atlease 8 characters</p>
+                <p className="text-lg  text-black ">atleast 8 characters</p>
               )}
             </div>
-            <div className="ml-8 mb-6">
+            <div className="ml-20 mb-6">
               <label htmlFor="password"> confirm password</label>
               <input
-                className=" flex border border-black   "
+                className=" flex border rounded-xl    "
                 type="password"
                 id="confirmPassword"
                 value={enteredConfirmPassword}
@@ -160,11 +160,11 @@ const Form = () => {
               {enteredConfirmPassword === enteredPassword &&
                 enteredConfirmPasswordTouched &&
                 enteredConfirmPassword.length > 0 && (
-                  <p className="text-lg text-green-900">passwords are matched</p>
+                  <p className="text-lg font-sans text-green-900">passwords are matched</p>
                 )}
             </div>
-            <div className="ml-8 mb-6">
-              <label className="flex pt-5 ml-1 ">Choose your nationality</label>
+            <div className="ml-20 mb-6">
+              <label className="flex pt-5  ml-1 ">Choose your nationality</label>
               <DropDownList
                 value={enteredNationality}
                 onChange={nationalityChangeHandler}
@@ -172,7 +172,7 @@ const Form = () => {
             </div>
             <div className="">
               <button
-                className="ml-28 disabled:cursor-not-allowed disabled:bg-black bg-stromi-200 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
+                className="ml-36 disabled:cursor-not-allowed disabled:bg-black bg-stromi-200 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
                 disabled={!formIsValid}
               >
                 Submit

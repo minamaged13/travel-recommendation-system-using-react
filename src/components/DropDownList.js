@@ -6,7 +6,7 @@ const DropDownList = (props) => {
       <select
         value={props.value}
         onChange={props.onChange}
-        className="text-2xl"
+        className="text-2xl rounded-xl w-60"
         name="nationality"
         required
       >
@@ -64,7 +64,7 @@ const DropDownList = (props) => {
         <option value="dutch">Dutch</option>
         <option value="east timorese">East Timorese</option>
         <option value="ecuadorean">Ecuadorean</option>
-        <option value="egyptian" selected="selected">
+        <option value="egyptian" >
           Egyptian
         </option>
         <option value="emirian">Emirian</option>

@@ -1,6 +1,6 @@
 import {Fragment, useState} from 'react';
 import Link from 'next/link';
-
+import Card from '@/UI/Card';
 const LoginForm = () => {
   const [enteredPassword, setEnteredPassword] = useState ('');
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState (false);
@@ -37,7 +37,7 @@ const LoginForm = () => {
         password: enteredPassword,
       }),
     })
-      .then (response => {
+      .then ( async response => {
         console.log ('Response ---------->');
         const data = await response.json ();
         console.log (data);
@@ -59,7 +59,7 @@ const LoginForm = () => {
         onSubmit={formSubmissionHandler}
         className="flex flex-col justify-center items-center    "
       >
-        <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-4 border-black rounded-3xl border-solid  bg-stromi-400 ">
+        <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-4 border-black rounded-3xl border-solid  bg-blue-500 ">
           <div className="ml-8 mb-6">
             <label htmlFor="email">Your E-Mail</label>
             <input
@@ -91,7 +91,7 @@ const LoginForm = () => {
 
           <div className="">
             <button
-              className="ml-8 disabled:cursor-not-allowed disabled:bg-black bg-stromi-200 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
+              className="ml-8 disabled:cursor-not-allowed disabled:bg-black bg-blue-500 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
               disabled={!formIsValid}
             >
               Submit
@@ -104,6 +104,7 @@ const LoginForm = () => {
         </div>
 
       </form>
+      
     </Fragment>
   );
 };
