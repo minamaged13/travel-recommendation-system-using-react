@@ -27,7 +27,8 @@ const LoginForm = () => {
     login ();
   };
   async function login () {
-    await fetch ('http://localhost:4000/user/login', {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+    await fetch (backendUrl + process.env.NEXT_PUBLIC_LOGIN_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,12 +38,16 @@ const LoginForm = () => {
         password: enteredPassword,
       }),
     })
-      .then ( async response => {
+      .then (async response => {
         console.log ('Response ---------->');
-        const data = await response.json ();
-        console.log (data);
-        console.log ('hiiiiiiiii');
-        console.log (response.body.user);
+
+        if ((await response.status) == 404) { //enter email or password is wrong 
+          console.log ('User not found');
+        } else {
+          const data = await response.json ();
+          console.log (data);
+          console.log (response.body.user);
+        }
       })
       // .then (data => console.log (data))
       .catch (error => console.error (error));
@@ -104,7 +109,7 @@ const LoginForm = () => {
         </div>
 
       </form>
-      
+
     </Fragment>
   );
 };
