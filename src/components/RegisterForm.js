@@ -79,7 +79,7 @@ router.push('/')
         onSubmit={formSubmissionHandler}
         className="flex flex-col justify-center items-center    "
       >
-        <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-4 border-black rounded-3xl border-solid  bg-stromi-400 ">
+        <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-2 border-black rounded-3xl border-solid  bg-blue-400 ">
           <div className=" ml-8 mb-6 ">
             <label htmlFor="name">Your Name</label>
             <input
@@ -152,7 +152,7 @@ router.push('/')
           </div>
           <div className="">
             <button
-              className="ml-28 disabled:cursor-not-allowed disabled:bg-black bg-stromi-200 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
+              className="ml-20 disabled:cursor-not-allowed disabled:bg-black bg-stromi-200 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
               disabled={!formIsValid}
             >
               Submit

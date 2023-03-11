@@ -64,7 +64,7 @@ const LoginForm = () => {
         onSubmit={formSubmissionHandler}
         className="flex flex-col justify-center items-center    "
       >
-        <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-4 border-black rounded-3xl border-solid  bg-blue-500 ">
+        <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-2 border-black rounded-3xl border-solid  bg-blue-400 ">
           <div className="ml-8 mb-6">
             <label htmlFor="email">Your E-Mail</label>
             <input
