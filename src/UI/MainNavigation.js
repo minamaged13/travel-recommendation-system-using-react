@@ -17,9 +17,9 @@ function MainNavigation() {
           <li className='mr-2 ml-6 hover:text-black text-white' >
             <Link href='/login'>login</Link>
           </li>
-          <li className='mr-2 ml-6 hover:text-black text-white' >
-            <Link href='/'>recommender</Link>
-          </li>
+          {/* <li className='mr-2 ml-6 hover:text-black text-white' >
+            <Link href='/recommender'>recommender</Link>
+          </li> */}
         </ul>
       </nav>
     </header>

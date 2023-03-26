@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import registerReducer from './register'
+import registerReducer from './registerSlice'
 
 
 const store = configureStore({

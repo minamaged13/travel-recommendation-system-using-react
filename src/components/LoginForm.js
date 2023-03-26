@@ -59,11 +59,11 @@ const LoginForm = () => {
         onSubmit={formSubmissionHandler}
         className="flex flex-col justify-center items-center    "
       >
-        <div className="capitalize text-2xl font-bold-300 m-9 p-6 shadow-2xl border border-4 border-black rounded-3xl border-solid  bg-blue-500 ">
-          <div className="ml-8 mb-6">
-            <label htmlFor="email">Your E-Mail</label>
+        <div className="capitalize text-2xl  font-bold-300 m-9 p-6 shadow-2xl border border-3  border-black rounded-3xl border-solid h-96 bg-gray-200 ">
+          <div className="ml-8 mt-7 mr-6 mb-6">
+            <label htmlFor="email"> E-Mail</label>
             <input
-              className=" flex border border-black   "
+              className=" flex border border-black rounded-lg  "
               type="email"
               id="email"
               onChange={emailInputChangeHandler}
@@ -72,14 +72,14 @@ const LoginForm = () => {
               required
             />
             {enteredEmailIsInvalid &&
-              <p className=" text-red-700 text-lg">
+              <p className=" text-red-700 text-lg ">
                 Please enter a valid email.
               </p>}
           </div>
           <div className=" ml-8 mb-6">
             <label htmlFor="password">password</label>
             <input
-              className=" flex border border-black   "
+              className=" flex border border-black rounded-lg  "
               type="password"
               id="password"
               value={enteredPassword}

@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+const initialState={toggle:false}
 const registerSlice =createSlice({
     name:'register',
-    initialState:{},
+    initialState,
     reducers:{
+        toggle(state){
+            state.toggle=!state.toggle;
+        },
 
     }
 })
