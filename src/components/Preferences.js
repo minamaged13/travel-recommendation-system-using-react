@@ -2,23 +2,25 @@ import { Fragment } from "react";
 import Button from "./Button";
 import { useState } from "react";
 const Preferences = () => {
-  ////hotel aminities
+  //hotel aminities
   const hotelAminities = [
-    "Restaurant",
-    "Air conditioning",
-    "Laundry service",
-    "Non-smoking rooms",
-    "24-hour front desk",
-    "Bar / lounge",
-    "Family rooms",
-    "Safe",
-    "Wifi",
-    "Pool",
-    "Dry cleaning",
-    "Concierge",
-    "Children Activities",
-    "Airport transportations",
-    "Room Service",
+    { id: "1", text: "Restaurant" },
+    { id: "2", text: "Air conditioning" },
+    { id: "3", text: "Laundry service" },
+    { id: "4", text: "Non-smoking rooms" },
+    { id: "5", text: "24-hour front desk" },
+    { id: "6", text: "Bar / lounge" },
+    { id: "7", text: "Family room" },
+    { id: "8", text: "Safe" },
+    { id: "9", text: "Wifi" },
+    { id: "10", text: "Pool" },
+    { id: "11", text: "Dry cleaning" },
+    { id: "12", text: "Concierge" },
+    { id: "13", text: "Children Activities" },
+    { id: "14", text: "Airport transportations" },
+    { id: "15", text: "Room Service" }
+
+  
   ];
   const [choosenAminities, setChoosenAminities] = useState([]);
   const hotelClickHandler = (event) => {
@@ -29,6 +31,8 @@ const Preferences = () => {
         choosenAminities.filter((item) => item !== event.target.id)
       );
     }
+    console.log(event.target.id)
+    console.log(choosenAminities);
   };
   const clearAminities = () => {
     setChoosenAminities([]);
@@ -59,17 +63,17 @@ const Preferences = () => {
             choose 5 hotel aminities or more
           </h1>
           <div className="grid grid-cols-3 grid-rows-5 gap-4  text-black ">
-            {hotelAminities.map((text) => (
+            {hotelAminities.map((item) => (
               <button
                 className={`${
-                  choosenAminities.includes(text)
+                  choosenAminities.includes(item.id)
                     ? "bg-gray-300 "
                     : "bg-transparent"
                 } text-xl  rounded-xl h-20  w-36 p-2 shadow-md hover:shadow-xl transition duration-300 ease-in-out`}
-                id={`${text}`}
+                id={item.id}
                 onClick={hotelClickHandler}
               >
-                {text}
+                {item.text}
               </button>
             ))}
           </div>

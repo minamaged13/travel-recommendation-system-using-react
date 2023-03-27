@@ -6,6 +6,7 @@ import Preferences from '@/components/Preferences';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerActions } from '@/store/registerSlice';
 const register=()=>{
+    
     const dispatch= useDispatch();
     const formAppear= useSelector(state=>state.register.toggle)
     const showHandler=()=>{
