@@ -88,6 +88,12 @@ const Form = () => {
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
+    regsister();
+    // router.push('/')
+  }
+
+  async function regsister () {
+    console.log("enteredFirstName", enteredFirstName);
     const user = new User(
       enteredFirstName,
       enteredSecondName,
@@ -95,11 +101,33 @@ const Form = () => {
       enteredPassword,
       enteredNationality,
     );
+    console.log("user");
     console.log(user);
     setFormSubmitted(true);
     dispatch(registerActions.toggle());
-    // router.push('/')
-  };
+    await fetch ('http://localhost:4000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify ({
+        firstName: user.firstName,
+        secondName: user.lastName,
+        email: user.email,
+        password: user.password,
+        nationality:user.nationality
+      }),
+    })
+      .then ( async response => {
+        console.log ('Response ---------->');
+        const data = await response.json ();
+        console.log (data);
+        console.log (response.body.user);
+      })
+      // .then (data => console.log (data))
+      .catch (error => console.error (error));
+  }
+
   return (
     <Fragment>
       {!formSubmitted && (
