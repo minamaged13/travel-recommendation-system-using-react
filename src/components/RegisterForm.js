@@ -94,7 +94,6 @@ const Form = () => {
       enteredEmail,
       enteredPassword,
       enteredNationality,
-      "01222"
     );
     console.log(user);
     setFormSubmitted(true);
