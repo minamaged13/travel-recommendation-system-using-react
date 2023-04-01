@@ -4,8 +4,13 @@ import DropDownList from "./DropDownList";
 import { useDispatch, useSelector } from "react-redux";
 import { registerActions } from "@/store/registerSlice";
 import { useRouter } from "next/router";
+import {UserActions} from "@/store/userSlice";
+
+
 const Form = () => {
   const router = useRouter();
+  let userId=useSelector(state=>state.user.id);
+
   const dispatch = useDispatch();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [enteredFirstName, setEnteredFirstName] = useState("");
@@ -122,10 +127,12 @@ const Form = () => {
         console.log ('Response ---------->');
         const data = await response.json ();
         console.log (data);
-        console.log (response.body.user);
+        userId=data.id;
+        console.log("UserId",userId);
       })
-      // .then (data => console.log (data))
       .catch (error => console.error (error));
+      dispatch(UserActions.logIn(userId));
+
   }
 
   return (
