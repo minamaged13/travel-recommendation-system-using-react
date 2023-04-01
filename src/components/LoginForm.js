@@ -1,6 +1,6 @@
 import {Fragment, useState} from 'react';
 import Link from 'next/link';
-import Card from '@/UI/Card';
+
 const LoginForm = () => {
   const [enteredPassword, setEnteredPassword] = useState ('');
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState (false);
@@ -79,7 +79,7 @@ const LoginForm = () => {
           <div className=" ml-8 mb-6">
             {enteredPassword.length>0 &&<label htmlFor="password">password</label> }
             <input
-              className=" flex border border-2 border-gray-300 rounded-lg w-56 "
+              className=" flex border border-2 border-gray-300 rounded-lg w-72 "
               type="password"
               id="password"
               placeholder=' Password'
@@ -90,14 +90,14 @@ const LoginForm = () => {
             />
           </div>
 
-          <div className=" pt-4">
+          <div className=" pt-4 ">
             <button
-              className="ml-8 disabled:cursor-not-allowed   bg-blue-500 text-white  py-2 px-4 rounded-full  transition delay-100 duration-300 ease-in-out "
+              className="ml-8 disabled:cursor-not-allowed h-10   bg-blue-500 text-white  px-4 rounded-lg  transition delay-100 duration-300 ease-in-out "
               disabled={!formIsValid}
             >
-              Submit
+             Sign In
             </button>
-            <Link href="/register" className="text-sm">
+            <Link href="/register" className="text-sm pl-3">
               {' '}
               dont have account?
             </Link>

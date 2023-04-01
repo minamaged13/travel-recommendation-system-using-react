@@ -213,10 +213,10 @@ const Form = () => {
                 onBlur={confirmPasswordInputBlurHandler}
                 required
               ></input>
-              {enteredConfirmPassword === enteredPassword &&
+              {enteredConfirmPassword !== enteredPassword &&
                 enteredConfirmPasswordTouched &&
                 enteredConfirmPassword.length > 0 && (
-                  <p className="text-lg text-red-700">passwords are matched</p>
+                  <p className="text-lg text-red-700">passwords are not matched</p>
                 )}
             </div>
             <div className="ml-8 mb-6">
@@ -231,7 +231,7 @@ const Form = () => {
                 className="ml-20 disabled:cursor-not-allowed disabled:bg-black bg-stromi-200 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
                 disabled={!formIsValid}
               >
-                Submit
+                Sign Up
               </button>
             </div>
           </div>
