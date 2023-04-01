@@ -1,12 +1,12 @@
-import Name from "./Name";
+
 class User {
-  constructor (firstname,lastname, email, password, nationality, phoneNumber) {
-    this.Name=new Name(firstname,lastname);
-    this.Name.lastName= Name.lastName;
+
+  constructor (firstName,lastName,email, password, nationality) {
+    this.firstName=firstName;
+    this.lastName=lastName;
     this.email = email;
     this.password = password;
     this.nationality = nationality;
-    this.phoneNumber = phoneNumber;
   }
 }
 export default User;

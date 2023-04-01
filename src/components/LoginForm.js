@@ -27,7 +27,7 @@ const LoginForm = () => {
     login ();
   };
   async function login () {
-    await fetch ('http://localhost:4000/user/login', {
+    await fetch ('http://localhost:4000/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,6 @@ const LoginForm = () => {
         console.log ('Response ---------->');
         const data = await response.json ();
         console.log (data);
-        console.log ('hiiiiiiiii');
         console.log (response.body.user);
       })
       // .then (data => console.log (data))
