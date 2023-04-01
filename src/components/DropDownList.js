@@ -10,7 +10,7 @@ const DropDownList = (props) => {
         name="nationality"
         required
       >
-        <option value="afghan">Afghan</option>
+        
         <option value="albanian">Albanian</option>
         <option value="algerian">Algerian</option>
         <option value="american">American</option>
@@ -21,7 +21,6 @@ const DropDownList = (props) => {
         <option value="armenian">Armenian</option>
         <option value="australian">Australian</option>
         <option value="austrian">Austrian</option>
-        <option value="azerbaijani">Azerbaijani</option>
         <option value="bahamian">Bahamian</option>
         <option value="bahraini">Bahraini</option>
         <option value="bangladeshi">Bangladeshi</option>
@@ -64,7 +63,7 @@ const DropDownList = (props) => {
         <option value="dutch">Dutch</option>
         <option value="east timorese">East Timorese</option>
         <option value="ecuadorean">Ecuadorean</option>
-        <option value="egyptian" >
+        <option value="egyptian"default >
           Egyptian
         </option>
         <option value="emirian">Emirian</option>

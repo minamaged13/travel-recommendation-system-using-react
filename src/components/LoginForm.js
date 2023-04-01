@@ -57,31 +57,33 @@ const LoginForm = () => {
     <Fragment>
       <form
         onSubmit={formSubmissionHandler}
-        className="flex flex-col justify-center items-center    "
+        className="flex flex-col justify-center items-center m-20    "
       >
-        <div className="capitalize text-2xl  font-bold-300 m-9 p-6 shadow-2xl border border-3  border-black rounded-3xl border-solid h-96 bg-gray-200 ">
+        <div className="capitalize text-2xl   pt-8 pb-20 shadow-2xl    rounded-md border-solid  bg-gray-100 ">
           <div className="ml-8 mt-7 mr-6 mb-6">
-            <label htmlFor="email"> E-Mail</label>
+            { enteredEmail.length>0  && <label htmlFor="email"> E-Mail</label> }
             <input
-              className=" flex border border-black rounded-lg  "
+              className=" flex border border-2 border-gray-200 rounded-lg w-72 "
               type="email"
               id="email"
+              placeholder=' E-mail Address'
               onChange={emailInputChangeHandler}
               onBlur={emailInputBlurHandler}
               value={enteredEmail}
               required
             />
             {enteredEmailIsInvalid &&
-              <p className=" text-red-700 text-lg ">
+              <p className=" text-red-700 text-lg  ">
                 Please enter a valid email.
               </p>}
           </div>
           <div className=" ml-8 mb-6">
-            <label htmlFor="password">password</label>
+            {enteredPassword.length>0 &&<label htmlFor="password">password</label> }
             <input
-              className=" flex border border-black rounded-lg  "
+              className=" flex border border-2 border-gray-300 rounded-lg w-56 "
               type="password"
               id="password"
+              placeholder=' Password'
               value={enteredPassword}
               onChange={passwordInputChangeHandler}
               onBlur={passwordInputBlurHandler}
@@ -89,9 +91,9 @@ const LoginForm = () => {
             />
           </div>
 
-          <div className="">
+          <div className=" pt-4">
             <button
-              className="ml-8 disabled:cursor-not-allowed disabled:bg-black bg-blue-500 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
+              className="ml-8 disabled:cursor-not-allowed   bg-blue-500 text-white  py-2 px-4 rounded-full  transition delay-100 duration-300 ease-in-out "
               disabled={!formIsValid}
             >
               Submit

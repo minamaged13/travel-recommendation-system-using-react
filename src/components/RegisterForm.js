@@ -106,9 +106,9 @@ const Form = () => {
       {!formSubmitted && (
         <form
           onSubmit={formSubmissionHandler}
-          className="flex flex-col justify-center items-center    "
+          className="flex flex-col justify-center items-center shadow-2xl    "
         >
-          <div className="capitalize text-2xl  font-bold-300 m-9 p-6 shadow-2xl border border-2 border-black rounded-3xl border-solid  bg-blue-400  ">
+          <div className="capitalize text-xl  font-bold-300 m-9 p-6 shadow-2xl rounded-2xl border-solid bg-gray-100  ">
             <div className=" ml-8 mb-6 ">
               <label htmlFor="name"> first Name</label>
               <input
@@ -172,7 +172,7 @@ const Form = () => {
                 required
               ></input>
               {enteredPassword.length < 8 && (
-                <p className="text-lg text-red-700 ">atlease 8 characters</p>
+                <p className="text-lg text-red-700 ">at least 8 characters</p>
               )}
             </div>
             <div className="ml-8 mb-6">
