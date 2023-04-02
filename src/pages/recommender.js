@@ -1,54 +1,25 @@
-import RecommendCard from "@/UI/RecommendCard";
-import { Fragment, useState } from "react";
+import RecommendCard from '@/UI/RecommendCard';
+import {Fragment, useEffect, useState} from 'react';
 
 const recommender = () => {
-  const [selectedCity, setSelectedCity] = useState("cairo");
-  const selectedCityHandler = (event) => {
-    setSelectedCity(event.target.value);
-    console.log(selectedCity);
+  const [selectedCity, setSelectedCity] = useState ('cairo');
+  const [recommendHotels, setRecommendHotels] = useState ([]);
+  const selectedCityHandler = event => {
+    setSelectedCity (event.target.value);
+    console.log (selectedCity);
   };
-  const hotels = [
-    {
-      src: "/travel.png",
-      name: "almaza hotel in",
-      desc: "this is a hotel with great view",
-    },
-    {
-      src: "/travel.png",
-      name: "almaza hotel",
-      desc: "this is a hotel with great view",
-    },
-    {
-      src: "/travel.png",
-      name: "almaza hotel",
-      desc: "this is a hotel with great view",
-    },
-    {
-      src: "/travel.png",
-      name: "almaza hotel",
-      desc: "this is a hotel with great view",
-    },
-    {
-      src: "/travel.png",
-      name: "almaza hotel",
-      desc: "this is a hotel with great view",
-    },
-    {
-      src: "/travel.png",
-      name: "almaza hotel",
-      desc: "this is a hotel with great view",
-    },
-    {
-      src: "/travel.png",
-      name: "almaza hotel",
-      desc: "this is a hotel with great view",
-    },
-    {
-      src: "/travel.png",
-      name: "almaza hotel out",
-      desc: "this is a hotel with great view",
-    },
-  ];
+  useEffect (() => {
+    //ToDO: pass the user id & city name to the backend url 
+    fetch ('http://localhost:4000/hotels/recommender/1/Cairo')
+      .then ((response) => {
+        return response.json ();
+      })
+      .then ((data) => {
+        console.log ('Data: ', data);
+        setRecommendHotels (data);
+      })
+      .catch (error => console.error (error));
+  }, []);
   return (
     <Fragment>
       <div className="capitalize">
@@ -74,22 +45,25 @@ const recommender = () => {
         </div>
         {/* block */}
         <div className="h-screen p-9 shadow-2xl">
-          <p className="text-5xl mb-8 border-white flex inline-flex mt-3 ">hotels for you</p>
+          <p className="text-5xl mb-8 border-white flex inline-flex mt-3 ">
+            hotels for you
+          </p>
           <div className=" flex items-center  bg-yellow-300 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
-           
-            {hotels.map((item) => (
-              <div className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  ">
+
+            {recommendHotels.map (item => (
+              <div key={item.id} className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  ">
                 <RecommendCard
-                  desc={item.desc}
+                  desc={item.description}
                   name={item.name}
-                  src={item.src}
+                  // src={image}
+                  
                 />
               </div>
             ))}
           </div>
         </div>
-         {/* block */}
-        
+        {/* block */}
+
       </div>
     </Fragment>
   );
