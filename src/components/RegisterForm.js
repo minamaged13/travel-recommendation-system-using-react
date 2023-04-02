@@ -65,6 +65,7 @@ const Form = () => {
   };
   const passwordInputChangeHandler = (e) => {
     setEnteredPassword(e.target.value);
+    
   };
   const passwordInputBlurHandler = (event) => {
     setEnteredPasswordTouched(true);
@@ -204,7 +205,7 @@ const Form = () => {
                 onBlur={passwordInputBlurHandler}
                 required
               ></input>
-              {enteredPassword.length < 8 && (
+              {enteredPassword.length < 8 && enteredPasswordTouched && (
                 <p className="text-lg text-red-700 ">at least 8 characters</p>
               )}
             </div>
