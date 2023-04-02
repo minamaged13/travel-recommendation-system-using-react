@@ -2,15 +2,16 @@ import RecommendCard from '@/UI/RecommendCard';
 import {Fragment, useEffect, useState} from 'react';
 
 const recommender = () => {
-  const [selectedCity, setSelectedCity] = useState ('cairo');
+  const [selectedCity, setSelectedCity] = useState ('Cairo');
   const [recommendHotels, setRecommendHotels] = useState ([]);
   const selectedCityHandler = event => {
     setSelectedCity (event.target.value);
     console.log (selectedCity);
   };
   useEffect (() => {
+    console.log('selectedCity', selectedCity)
     //ToDO: pass the user id & city name to the backend url 
-    fetch ('http://localhost:4000/hotels/recommender/1/Cairo')
+    fetch (`http://localhost:4000/hotels/recommender/1/${selectedCity}` )
       .then ((response) => {
         return response.json ();
       })
@@ -19,7 +20,7 @@ const recommender = () => {
         setRecommendHotels (data);
       })
       .catch (error => console.error (error));
-  }, []);
+  }, [selectedCity]);
   return (
     <Fragment>
       <div className="capitalize">
@@ -31,13 +32,13 @@ const recommender = () => {
             onChange={selectedCityHandler}
             className="w-72 h-12 text-3xl border border-2 shadow-lg rounded-2xl border-black"
           >
-            <option value="cairo">Cairo</option>
-            <option value="luxor">Luxor</option>
-            <option value="alexandria">Alexandria</option>
-            <option value="giza">Giza</option>
-            <option value="fayoum">Fayoum</option>
-            <option value="hurghada">Hurghada</option>
-            <option value="sharm el sheikh">Sharm El Sheikh</option>
+            <option value="Cairo">Cairo</option>
+            <option value="Luxor">Luxor</option>
+            <option value="Alexandria">Alexandria</option>
+            <option value="Giza">Giza</option>
+            <option value="Fayoum">Fayoum</option>
+            <option value="Hurghada">Hurghada</option>
+            <option value="Sharm el sheikh">Sharm El Sheikh</option>
           </select>
         </div>
         <div className="flex justify-center text-7xl mt-20 mb-16">
