@@ -1,7 +1,14 @@
 import {Fragment, useState} from 'react';
 import Link from 'next/link';
+import {UserActions} from '@/store/UserSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {useRouter} from 'next/router';
 
 const LoginForm = () => {
+  const dispatch = useDispatch ();
+  const router = useRouter ();
+  const loggedIn = useSelector (state => state.user.loggedIn);
+  const userID = useSelector (state => state.user.userID);
   const [enteredPassword, setEnteredPassword] = useState ('');
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState (false);
   const [enteredEmail, setEnteredEmail] = useState ('');
@@ -22,35 +29,34 @@ const LoginForm = () => {
   const emailInputBlurHandler = event => {
     setEnteredEmailTouched (true);
   };
-  const formSubmissionHandler = event => {
+  // const formSubmissionHandler = event => {
+  //   event.preventDefault ();
+  //   login ();
+  // };
+  async function login (event) {  
     event.preventDefault ();
-    login ();
-    recommendHotel(1,"Cairo")
-  };
-  async function login () {
-    await fetch ('http://localhost:4000/users/login', {
+
+    const response = await fetch('http://localhost:4000/users/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify ({
         email: enteredEmail,
         password: enteredPassword,
-      }),
-    })
-      .then ( async response => {
-        console.log ('Response ---------->');
-        const data = await response.json ();
-        console.log (data);
-        console.log (response.body.user);
       })
-      // .then (data => console.log (data))
-      .catch (error => console.error (error));
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch (UserActions.logIn (data));
+      console.log('Success:', data.user);
+      router.push ('/recommender');
+      console.log("UserID: ", userID)
+      
+    } else {
+      console.error('Error:', response.status);
+    }
   }
-
-
- 
-
 
   let formIsValid = false;
 
@@ -60,17 +66,17 @@ const LoginForm = () => {
   return (
     <Fragment>
       <form
-        onSubmit={formSubmissionHandler}
+        onSubmit={login}
         className="flex flex-col justify-center items-center m-20    "
       >
         <div className="capitalize text-2xl   pt-8 pb-20 shadow-2xl    rounded-md border-solid  bg-gray-100 ">
           <div className="ml-8 mt-7 mr-6 mb-6">
-            { enteredEmail.length>0  && <label htmlFor="email"> E-Mail</label> }
+            {enteredEmail.length > 0 && <label htmlFor="email"> E-Mail</label>}
             <input
               className=" flex border border-2 border-gray-200 rounded-lg w-72 "
               type="email"
               id="email"
-              placeholder=' E-mail Address'
+              placeholder=" E-mail Address"
               onChange={emailInputChangeHandler}
               onBlur={emailInputBlurHandler}
               value={enteredEmail}
@@ -82,12 +88,13 @@ const LoginForm = () => {
               </p>}
           </div>
           <div className=" ml-8 mb-6">
-            {enteredPassword.length>0 &&<label htmlFor="password">password</label> }
+            {enteredPassword.length > 0 &&
+              <label htmlFor="password">password</label>}
             <input
               className=" flex border border-2 border-gray-300 rounded-lg w-72 "
               type="password"
               id="password"
-              placeholder=' Password'
+              placeholder=" Password"
               value={enteredPassword}
               onChange={passwordInputChangeHandler}
               onBlur={passwordInputBlurHandler}
@@ -100,7 +107,7 @@ const LoginForm = () => {
               className="ml-8 disabled:cursor-not-allowed h-10   bg-blue-500 text-white  px-4 rounded-lg  transition delay-100 duration-300 ease-in-out "
               disabled={!formIsValid}
             >
-             Sign In
+              Sign In
             </button>
             <Link href="/register" className="text-sm pl-3">
               {' '}
@@ -110,7 +117,7 @@ const LoginForm = () => {
         </div>
 
       </form>
-      
+
     </Fragment>
   );
 };
