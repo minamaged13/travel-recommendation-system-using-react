@@ -25,6 +25,7 @@ const LoginForm = () => {
   const formSubmissionHandler = event => {
     event.preventDefault ();
     login ();
+    recommendHotel(1,"Cairo")
   };
   async function login () {
     await fetch ('http://localhost:4000/users/login', {
@@ -46,6 +47,10 @@ const LoginForm = () => {
       // .then (data => console.log (data))
       .catch (error => console.error (error));
   }
+
+
+ 
+}
 
   let formIsValid = false;
 
