@@ -72,7 +72,7 @@ const LoginForm = () => {
               required
             />
             {enteredEmailIsInvalid &&
-              <p className=" text-red-700 text-lg  ">
+              <p className=" text-red-700 text-sm  ">
                 Please enter a valid email.
               </p>}
           </div>

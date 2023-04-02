@@ -3,7 +3,7 @@ import Image from "next/image";
 const RecommendCard = (props) => {
   return (
     <Fragment>
-      <div className="w-72 mt-10 mb-20 shadow-2xl mr-8 ml-8 bg-white border border-gray-200 rounded-lg  dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-60 mt-10  mb-20 shadow-2xl mr-8 ml-8 bg-white border border-gray-200 rounded-lg  dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <Image
             className="rounded-t-lg"

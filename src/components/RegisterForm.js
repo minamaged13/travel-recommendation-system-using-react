@@ -4,13 +4,12 @@ import DropDownList from "./DropDownList";
 import { useDispatch, useSelector } from "react-redux";
 import { registerActions } from "@/store/registerSlice";
 import { useRouter } from "next/router";
-import {UserActions} from "@/store/userSlice";
+import {UserActions} from "@/store/UserSlice";
 
 
 const Form = () => {
   const router = useRouter();
   let userId=useSelector(state=>state.user.id);
-
   const dispatch = useDispatch();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [enteredFirstName, setEnteredFirstName] = useState("");
@@ -140,7 +139,7 @@ const Form = () => {
       {!formSubmitted && (
         <form
           onSubmit={formSubmissionHandler}
-          className="flex flex-col justify-center items-center shadow-2xl    "
+          className="flex flex-col justify-center items-center shadow-2xl  "
         >
           <div className="capitalize text-xl  font-bold-300 m-9 p-6 shadow-2xl rounded-2xl border-solid bg-gray-100  ">
             <div className=" ml-8 mb-6 ">

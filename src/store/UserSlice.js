@@ -1,6 +1,6 @@
 import User from "@/models/User";
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = { userID: 0  };
+const initialState = { userID: 2, isLoggedin:true  };
 const UserSlice = createSlice({
   name: "currentUser",
   initialState,

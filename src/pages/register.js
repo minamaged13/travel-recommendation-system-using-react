@@ -14,9 +14,9 @@ const register=()=>{
       }
     return <Fragment>
        <div className=''>
-       <button onClick={showHandler} className="text-2xl"> show/ hide</button>
-        {!formAppear&&<RegisterForm/>}
-        {formAppear&&<Preferences></Preferences>}
+       {/* <button onClick={showHandler} className="text-2xl"> show/ hide</button> */}
+        {formAppear&&<RegisterForm/>}
+        {!formAppear&&<Preferences></Preferences>}
 
        </div>
     </Fragment>
