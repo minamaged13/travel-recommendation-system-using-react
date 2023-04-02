@@ -1,7 +1,9 @@
 import RecommendCard from '@/UI/RecommendCard';
 import {Fragment, useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 
 const recommender = () => {
+  const userID = useSelector (state => state.user.userID);
   const [selectedCity, setSelectedCity] = useState ('Cairo');
   const [recommendHotels, setRecommendHotels] = useState ([]);
   const selectedCityHandler = event => {
@@ -11,7 +13,7 @@ const recommender = () => {
   useEffect (() => {
     console.log('selectedCity', selectedCity)
     //ToDO: pass the user id & city name to the backend url 
-    fetch (`http://localhost:4000/hotels/recommender/1/${selectedCity}` )
+    fetch (`http://localhost:4000/hotels/recommender/${userID}/${selectedCity}` )
       .then ((response) => {
         return response.json ();
       })
