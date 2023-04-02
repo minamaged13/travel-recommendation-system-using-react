@@ -2,7 +2,6 @@ import {Fragment, useState} from 'react';
 import Link from 'next/link';
 
 const LoginForm = () => {
-
   const [enteredPassword, setEnteredPassword] = useState ('');
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState (false);
   const [enteredEmail, setEnteredEmail] = useState ('');
@@ -23,8 +22,12 @@ const LoginForm = () => {
   const emailInputBlurHandler = event => {
     setEnteredEmailTouched (true);
   };
-  async function login (event) {
-    event.preventDefault();
+  const formSubmissionHandler = event => {
+    event.preventDefault ();
+    login ();
+    recommendHotel(1,"Cairo")
+  };
+  async function login () {
     await fetch ('http://localhost:4000/users/login', {
       method: 'POST',
       headers: {
@@ -39,10 +42,14 @@ const LoginForm = () => {
         console.log ('Response ---------->');
         const data = await response.json ();
         console.log (data);
+        console.log (response.body.user);
       })
       // .then (data => console.log (data))
       .catch (error => console.error (error));
   }
+
+
+ 
 
 
   let formIsValid = false;
@@ -53,7 +60,7 @@ const LoginForm = () => {
   return (
     <Fragment>
       <form
-        onSubmit={login}
+        onSubmit={formSubmissionHandler}
         className="flex flex-col justify-center items-center m-20    "
       >
         <div className="capitalize text-2xl   pt-8 pb-20 shadow-2xl    rounded-md border-solid  bg-gray-100 ">
@@ -70,7 +77,7 @@ const LoginForm = () => {
               required
             />
             {enteredEmailIsInvalid &&
-              <p className=" text-red-700 text-lg  ">
+              <p className=" text-red-700 text-sm  ">
                 Please enter a valid email.
               </p>}
           </div>

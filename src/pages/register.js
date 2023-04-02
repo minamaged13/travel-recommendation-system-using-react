@@ -14,7 +14,7 @@ const register=()=>{
       }
     return <Fragment>
        <div className=''>
-       <button onClick={showHandler} className="text-2xl"> show/ hide</button>
+       {/* <button onClick={showHandler} className="text-2xl"> show/ hide</button> */}
         {!formAppear&&<RegisterForm/>}
         {formAppear&&<Preferences></Preferences>}
 
