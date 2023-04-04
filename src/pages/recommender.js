@@ -58,15 +58,12 @@ const recommender = () => {
                 <RecommendCard
                   desc={item.description}
                   name={item.name}
-                  // src={image}
-                  
+                  src={item.imageUrl}                  
                 />
               </div>
             ))}
           </div>
         </div>
-        {/* block */}
-
       </div>
     </Fragment>
   );
