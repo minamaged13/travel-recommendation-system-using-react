@@ -31,7 +31,7 @@ function MainNavigation() {
           )}
           {loggedIn && (
             <li className="mr-2 ml-6 hover:text-black text-white">
-              <Link href="">profile</Link>
+              <Link href="/profile">profile</Link>
             </li>
           )}
         </ul>
