@@ -4,15 +4,15 @@ const RecommendCard = (props) => {
   return (
     <Fragment>
       <div className="w-72 mt-10 mb-20 shadow-2xl mr-8 ml-8 bg-white border border-gray-200 rounded-lg  dark:bg-gray-800 dark:border-gray-700">
-        {/* <a href="#">
+        <a href="#">
           <Image
             className="rounded-t-lg"
             src={`${props.src}`}
-            width={300}
-            height={400}
-            alt=""
+            width={162}
+            height={108}
+            alt="hotel image"
           />
-        </a> */}
+        </a>
         <div className="p-5">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{`${props.name}`}</h5>
 
