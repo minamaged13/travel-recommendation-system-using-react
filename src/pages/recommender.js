@@ -5,17 +5,24 @@ import { useSelector } from "react-redux";
 
 const recommender = () => {
   const userID = useSelector((state) => state.user.userID);
-  const [selectedCity, setSelectedCity] = useState("Cairo");
+  const [selectedCity, setSelectedCity] = useState();
   const [recommendHotels, setRecommendHotels] = useState([]);
   const [recommendRestaurants, setRecommendRestaurants] = useState([]);
   const [recommendAttractions, setRecommendAttractions] = useState([]);
-  const requestNotVaild =
-    recommendHotels.length < 1 &&
-    recommendAttractions.length < 1 &&
-    recommendRestaurants.length < 1;
+  const [requestValid,setRequestValid]=useState(false);
+const[counter,setCounter]=useState(false)
+
   const selectedCityHandler = (event) => {
-    setSelectedCity(event.target.value);
+    setCounter(true);
     console.log(selectedCity);
+    setSelectedCity(event.target.value);
+    setTimeout(()=>{
+      setRequestValid(true)
+    },4000)
+  
+
+        setRequestValid(false)
+     
   };
   ///hotels
   useEffect(() => {
@@ -67,14 +74,15 @@ const recommender = () => {
     <Fragment>
       <div className="capitalize  ">
         <div className="flex justify-center pt-48 font-mono h-96 bg-blue-500 ">
-          <label className="mr-5 text-5xl font-mono">choose city</label>
-          <select
+          <label className="mr-5 text-5xl font-mono">where to go ?</label>
+          <select 
             required
             value={selectedCity}
             onChange={selectedCityHandler}
             className="w-72 h-12 text-3xl border border-2 shadow-lg rounded-2xl border-black"
           >
-            <option value="cairo">Cairo</option>
+          {!counter&& <option  >Choose City</option>}
+            <option value="cairo" >Cairo</option>
             <option value="luxor">Luxor</option>
             <option value="alexandria">Alexandria</option>
             <option value="giza">Giza</option>
@@ -82,11 +90,12 @@ const recommender = () => {
             <option value="hurghada">Hurghada</option>
             <option value="sharm el sheikh">Sharm El Sheikh</option>
           </select>
+        
         </div>
         <div className="flex justify-center text-7xl mt-20 mb-16 ">
           <p>Special for you</p>
         </div>
-        {requestNotVaild && (
+        {!requestValid && (
          <div class="text-center">
         <div role="status">
     <svg aria-hidden="true" class="inline w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +107,7 @@ const recommender = () => {
      </div>
         )}
 
-        <div className={`${requestNotVaild && " animate-pulse"}`}>
+        <div className={`${!requestValid && " animate-pulse"}`}>
           {/* hotels */}
           <div className="h-screen p-9 shadow-2xl">
             <p className="text-5xl mb-8 border-white flex inline-flex mt-3 ">
