@@ -1,60 +1,74 @@
-import RecommendCard from "@/UI/RecommendCard";
-import { Fragment, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import RecommendCard from '@/UI/RecommendCard';
+import {data} from 'autoprefixer';
+import {Fragment, useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 
 const recommender = () => {
-  const userID = useSelector((state) => state.user.userID);
-  const [selectedCity, setSelectedCity] = useState("Cairo");
-  const [recommendHotels, setRecommendHotels] = useState([]);
-  const [recommendRestaurants, setRecommendRestaurants] = useState([]);
-  const [recommendAttractions,setRecommendAttractions]=useState([]);
-  const selectedCityHandler = (event) => {
-    setSelectedCity(event.target.value);
-    console.log(selectedCity);
+  const userID = useSelector (state => state.user.userID);
+  const [selectedCity, setSelectedCity] = useState ('Cairo');
+  const [recommendHotels, setRecommendHotels] = useState ([]);
+  const [recommendRestaurants, setRecommendRestaurants] = useState ([]);
+  const [recommendAttractions, setRecommendAttractions] = useState ([]);
+  const selectedCityHandler = event => {
+    setSelectedCity (event.target.value);
+    console.log (selectedCity);
   };
   ///hotels
-  useEffect(() => {
-    console.log("selectedCity", selectedCity);
-    //ToDO: pass the user id & city name to the backend url
-    fetch(`http://localhost:4000/hotels/recommender/${userID}/${selectedCity}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Data: ", data);
-        setRecommendHotels(data);
-      })
-      .catch((error) => console.error(error));
-  }, [selectedCity]);
+  useEffect (
+    () => {
+      console.log ('selectedCity', selectedCity);
+      //ToDO: pass the user id & city name to the backend url
+      fetch (
+        `http://localhost:4000/hotels/recommender/${userID}/${selectedCity}`
+      )
+        .then (response => {
+          return response.json ();
+        })
+        .then (data => {
+          // console.log ('Data: ', data);
+          setRecommendHotels (data);
+        })
+        .catch (error => console.error (error));
+    },
+    [data]
+  );
   ///attractions
-  useEffect(() => {
-    console.log("selectedCity", selectedCity);
-    //ToDO: pass the user id & city name to the backend url
-    fetch(`http://localhost:4000/attractions/recommender/${userID}/${selectedCity}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Data: ", data);
-        setRecommendAttractions(data);
-      })
-      .catch((error) => console.error(error));
-  }, [selectedCity]);
-  ///restaurants
-  useEffect(() => {
-    console.log("selectedCity", selectedCity);
-    //ToDO: pass the user id & city name to the backend url
-    fetch(`http://localhost:4000/restaurants/recommender/${userID}/${selectedCity}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Data: ", data);
-        setRecommendRestaurants(data);
-      })
-      .catch((error) => console.error(error));
-  }, [selectedCity]);
-
+  useEffect (
+    () => {
+      console.log ('Attractions');
+      //ToDO: pass the user id & city name to the backend url
+      fetch (
+        `http://localhost:4000/attractions/recommender/${userID}/${selectedCity}`
+      )
+        .then (response => {
+          return response.json ();
+        })
+        .then (data => {
+          // console.log ('Data: ', data);
+          setRecommendAttractions (data);
+        })
+        .catch (error => console.error (error));
+    },
+    [data]
+  );
+  // /restaurants
+  useEffect (
+    () => {
+      //ToDO: pass the user id & city name to the backend url
+      fetch (
+        `http://localhost:4000/restaurants/recommender/${userID}/${selectedCity}`
+      )
+        .then (response => {
+          return response.json ();
+        })
+        .then (data => {
+          console.log ('Data: ', data);
+          setRecommendRestaurants (data);
+        })
+        .catch (error => console.error (error));
+    },
+    [data]
+  );
 
   return (
     <Fragment>
@@ -67,13 +81,13 @@ const recommender = () => {
             onChange={selectedCityHandler}
             className="w-72 h-12 text-3xl border border-2 shadow-lg rounded-2xl border-black"
           >
-            <option value="Cairo">Cairo</option>
-            <option value="Luxor">Luxor</option>
-            <option value="Alexandria">Alexandria</option>
-            <option value="Giza">Giza</option>
-            <option value="Fayoum">Fayoum</option>
-            <option value="Hurghada">Hurghada</option>
-            <option value="Sharm el sheikh">Sharm El Sheikh</option>
+            <option value="cairo">Cairo</option>
+            <option value="luxor">Luxor</option>
+            <option value="alexandria">Alexandria</option>
+            <option value="giza">Giza</option>
+            <option value="fayoum">Fayoum</option>
+            <option value="hurghada">Hurghada</option>
+            <option value="sharm el sheikh">Sharm El Sheikh</option>
           </select>
         </div>
         <div className="flex justify-center text-7xl mt-20 mb-16">
@@ -85,7 +99,7 @@ const recommender = () => {
             hotels for you
           </p>
           <div className=" flex items-center  bg-yellow-300 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
-            {recommendHotels.map((item) => (
+            {recommendHotels.map (item => (
               <div
                 key={item.id}
                 className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  "
@@ -100,46 +114,48 @@ const recommender = () => {
           </div>
         </div>
 
-
-
-
-          {/* restaurants */}
-          <div className="h-screen p-9 shadow-2xl mt-11">
+        {/* restaurants */}
+        <div className="h-screen p-9 shadow-2xl mt-11">
           <p className="text-5xl mb-8 border-white flex inline-flex mt-3 ">
             restaurants for you
           </p>
           <div className=" flex items-center  bg-yellow-300 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
 
             {recommendRestaurants.map (item => (
-              <div key={item.id} className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  ">
+              <div
+                key={item.id}
+                className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  "
+              >
                 <RecommendCard
-                  desc={item.description}
+                  desc={item.cuisines}
                   name={item.name}
-                  src={item.imageUrl}                  
+                  src={item.imageUrl}
                 />
               </div>
             ))}
           </div>
         </div>
-  {/* attractions*/}
-  <div className="h-screen p-9 shadow-2xl">
+        {/* attractions*/}
+        <div className="h-screen p-9 shadow-2xl">
           <p className="text-5xl mb-8 border-white flex inline-flex mt-3 ">
-           attractions for you
+            attractions for you
           </p>
           <div className=" flex items-center  bg-yellow-300 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
 
             {recommendAttractions.map (item => (
-              <div key={item.id} className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  ">
+              <div
+                key={item.id}
+                className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  "
+              >
                 <RecommendCard
                   desc={item.description}
                   name={item.name}
-                  src={item.imageUrl}                  
+                  src={item.imageUrl}
                 />
               </div>
             ))}
           </div>
         </div>
-
 
         {/* end */}
       </div>
