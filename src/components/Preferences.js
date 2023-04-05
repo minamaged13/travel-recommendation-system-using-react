@@ -1,7 +1,9 @@
 import { Fragment } from "react";
 import { useState } from "react";
-const Preferences = () => {
+import { useSelector } from "react-redux";
+const Preferences = (props) => {
   const [next, setNext] = useState(0);
+  const loggedIn = useSelector((state) => state.user.isLoggedin);
   const nextHandler = () => {
     setNext((prev) => (prev = prev + 1));
   };
@@ -27,7 +29,8 @@ const Preferences = () => {
     { id: "14", text: "Airport transportations" },
     { id: "15", text: "Room Service" },
   ];
-  const [choosenAminities, setChoosenAminities] = useState([]);
+  const initialAminities = loggedIn ? props.attractionsPreferences : [];
+  const [choosenAminities, setChoosenAminities] = useState(initialAminities);
   const validAminities = choosenAminities.length > 4 ? true : false;
   const hotelClickHandler = (event) => {
     if (!choosenAminities.includes(event.target.id)) {

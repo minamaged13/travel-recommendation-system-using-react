@@ -1,6 +1,6 @@
 import User from '@/models/User';
 import {createSlice} from '@reduxjs/toolkit';
-const initialState = {userID: 2, isLoggedin: false,firstName:"",secondName:"", email:""  };
+const initialState = {userID: 2, isLoggedin: false,info:{firstName:" mina ",secondName:"maurice", email:"mina@test.com",country:"spain"},preferences: {hotels:[],restaurants:[],attractions:[]} };
 const UserSlice = createSlice ({
   name: 'currentUser',
   initialState,
@@ -11,6 +11,7 @@ const UserSlice = createSlice ({
       state.firstName = action.payload.firstName;
       state.secondName = action.payload.secondName;
       state.email = action.payload.email;
+      state.country=action.payload.country
     },
 
     logout (state) {
