@@ -6,6 +6,12 @@ const BasicInfo = () => {
   
   return (
     <Fragment>
+       <div className="w-96 p-2 m-auto bg-white shadow-lg rounded-2xl ">
+        <div className="flex items-center justify-center ">
+        <div className="w-24 rounded-full">
+          <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-1047-840229.png?f=webp&w=256" />
+        </div>
+      </div>
       <div className="flex  capitalize p-8">
         <div className="grid grid-cols-2 gap-y-8 ">
           <label className="text-xl flex  text-gray-700">
@@ -29,6 +35,7 @@ const BasicInfo = () => {
           </label>
           <p className="text-2xl"> {user.country}</p>
         </div>
+      </div>
       </div>
     </Fragment>
   );

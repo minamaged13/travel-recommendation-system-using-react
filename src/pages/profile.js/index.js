@@ -10,9 +10,9 @@ const profile = () => {
   };
   return (
     <Fragment>
-      <ul className="mb-5 flex list-none flex-col flex-wrap justify-center border-b-0 pl-0 md:flex-row">
-        <li role="presentation" className=" text-center">
-          <button
+     
+      <div>
+      <button
             onClick={toggle}
             className={` ${
               basicInfo ? "text-gray-600 bg-neutral-100" : ""
@@ -20,8 +20,6 @@ const profile = () => {
           >
             basic Info
           </button>
-        </li>
-        <li className="flex-auto text-center">
           <button
             onClick={toggle}
             className={` ${
@@ -30,10 +28,12 @@ const profile = () => {
           >
             my preferences
           </button>
-        </li>
-      </ul>
-
+      </div>
+      
+     
       {basicInfo && <BasicInfo />}
+      
+     
       {!basicInfo && <MyPreferences/> }
     </Fragment>
   );
