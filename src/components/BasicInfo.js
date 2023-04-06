@@ -6,10 +6,10 @@ const BasicInfo = () => {
   
   return (
     <Fragment>
-       <div className="w-96 p-2 m-auto bg-white shadow-lg rounded-2xl ">
+       <div className="w-96 p-2 m-auto bg-white shadow-lg rounded-2xl mt-20 ">
         <div className="flex items-center justify-center ">
-        <div className="w-24 rounded-full">
-          <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-1047-840229.png?f=webp&w=256" />
+        <div className="w-32 rounded-full">
+          <img src="https://t4.ftcdn.net/jpg/03/59/58/91/360_F_359589186_JDLl8dIWoBNf1iqEkHxhUeeOulx0wOC5.jpg" class="rounded-full" />
         </div>
       </div>
       <div className="flex  capitalize p-8">
@@ -36,7 +36,18 @@ const BasicInfo = () => {
           <p className="text-2xl"> {user.country}</p>
         </div>
       </div>
+      <div class="flex justify-center">
+      <div class="flex items-center  ">
+      <div className="flex justify-center pb-10 pr-10  ">
+        <button className="text-xl p-4 px-7 bg-red-400 rounded-2xl hover:shadow-2xl">Logout</button>
       </div>
+      <div className="flex justify-center pb-10  ">
+        <button className="text-xl p-4 px-7 bg-blue-400 rounded-2xl hover:shadow-2xl">Edit</button>
+      </div>
+      </div>
+      </div>
+      </div>
+
     </Fragment>
   );
 };
