@@ -56,6 +56,7 @@ const LoginForm = () => {
     } else {
       console.error('Error:', response.status);
     }
+    router.replace('/recommender');
   }
 
   let formIsValid = false;

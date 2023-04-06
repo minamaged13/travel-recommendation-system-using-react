@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const recommender = () => {
   const userID = useSelector((state) => state.user.userID);
   const [selectedCity, setSelectedCity] = useState();
+  const test=[{name:"hello",desc:"this is testing message sdjkggfgggf", src:"/travel.png",id:1}]
   const [recommendHotels, setRecommendHotels] = useState([]);
   const [recommendRestaurants, setRecommendRestaurants] = useState([]);
   const [recommendAttractions, setRecommendAttractions] = useState([]);
@@ -114,7 +115,7 @@ const[counter,setCounter]=useState(false)
               hotels for you
             </p>
             <div className=" flex items-center  bg-yellow-300 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
-              {recommendHotels.map((item) => (
+              {test.map((item) => (
                 <div
                   key={item.id}
                   className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  "
@@ -123,6 +124,7 @@ const[counter,setCounter]=useState(false)
                     desc={item.description}
                     name={item.name}
                     src={item.imageUrl}
+                    id={item.id}
                   />
                 </div>
               ))}
