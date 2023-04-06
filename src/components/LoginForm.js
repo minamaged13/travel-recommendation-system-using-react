@@ -8,7 +8,9 @@ const LoginForm = () => {
   const dispatch = useDispatch ();
   const router = useRouter ();
   const loggedIn = useSelector (state => state.user.loggedIn);
-  const userID = useSelector (state => state.user.userID);
+  const userIDState = useSelector (state => state.user.id);
+  // const myObject = useSelector (state => state.user.myObject);
+
   const [enteredPassword, setEnteredPassword] = useState ('');
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState (false);
   const [enteredEmail, setEnteredEmail] = useState ('');
@@ -33,31 +35,32 @@ const LoginForm = () => {
   //   event.preventDefault ();
   //   login ();
   // };
-  async function login (event) {  
+  async function login (event) {
     event.preventDefault ();
 
-    const response = await fetch('http://localhost:4000/users/login', {
+    const response = await fetch ('http://localhost:4000/users/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify ({
         email: enteredEmail,
         password: enteredPassword,
-      })
+      }),
     });
     if (response.ok) {
-      const data = await response.json();
-      dispatch (UserActions.logIn (data));
-      console.log('Success:', data.user);
+      const data = await response.json ();
+      dispatch (UserActions.logIn ({
+        id: data.id, 
+        firstName: data.firstName
+      } ));
+      console.log ('Success:', data.id);
       router.push ('/recommender');
-      console.log("UserID: ", userID)
-      
+      console.log ('UserID: ', userIDState);
     } else {
-      console.error('Error:', response.status);
+      console.error ('Error:', response.status);
     }
-    router.replace('/recommender');
-   
+    router.replace ('/recommender');
   }
 
   let formIsValid = false;

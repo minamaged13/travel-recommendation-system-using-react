@@ -30,8 +30,8 @@ const Preferences = (props) => {
     { id: "14", text: "Airport transportations" },
     { id: "15", text: "Room Service" },
   ];
-  const initialAminities = loggedIn ? props.attractionsPreferences : [];
-  const [choosenAminities, setChoosenAminities] = useState(initialAminities);
+  // const initialAminities = loggedIn ? props.attractionsPreferences : [""];
+  const [choosenAminities, setChoosenAminities] = useState([]);
   const validAminities = choosenAminities.length > 4 ? true : false;
   const hotelClickHandler = (event) => {
     if (!choosenAminities.includes(event.target.id)) {
@@ -120,6 +120,10 @@ const Preferences = (props) => {
   const submitHandler = () => {
 /////http request needed here
 /// use userid in line 7 to put the selected preferences in the database 
+    console.log("user id: ",userId);
+    console.log("Chosen Aminties: ",choosenAminities);
+    console.log("Chosen Cusines: ",choosenCusines);
+    console.log("Chosen Attractions: ",choosenAttractions);
   };
   return (
     <Fragment>

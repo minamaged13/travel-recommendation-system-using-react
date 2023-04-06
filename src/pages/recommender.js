@@ -4,8 +4,8 @@ import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const recommender = () => {
-  const userID = useSelector((state) => state.user.userID);
-  const [selectedCity, setSelectedCity] = useState();
+  const userID = useSelector((state) => state.user.id);
+  const [selectedCity, setSelectedCity] = useState("Cairo");
   const [recommendHotels, setRecommendHotels] = useState([]);
   const [recommendRestaurants, setRecommendRestaurants] = useState([]);
   const [recommendAttractions, setRecommendAttractions] = useState([]);
@@ -26,7 +26,9 @@ const recommender = () => {
   };
   ///hotels
   useEffect(() => {
+    debugger;
     console.log("selectedCity", selectedCity);
+    console.log("userID in page recommender: ", userID)
     //ToDO: pass the user id & city name to the backend url
     fetch(`http://localhost:4000/hotels/recommender/${userID}/${selectedCity}`)
       .then((response) => {
@@ -37,7 +39,7 @@ const recommender = () => {
         setRecommendHotels(data);
       })
       .catch((error) => console.error(error));
-  }, [data]);
+  }, [selectedCity]);
   ///attractions
   useEffect(() => {
     console.log("Attractions");
@@ -53,7 +55,7 @@ const recommender = () => {
         setRecommendAttractions(data);
       })
       .catch((error) => console.error(error));
-  }, [data]);
+  }, [selectedCity]);
   // /restaurants
   useEffect(() => {
     //ToDO: pass the user id & city name to the backend url
@@ -68,7 +70,7 @@ const recommender = () => {
         setRecommendRestaurants(data);
       })
       .catch((error) => console.error(error));
-  }, [data]);
+  }, [selectedCity]);
 
   return (
     <Fragment>
@@ -82,13 +84,13 @@ const recommender = () => {
             className="w-72 h-12 text-3xl border border-2 shadow-lg rounded-2xl border-black"
           >
           {!counter&& <option  >Choose City</option>}
-            <option value="cairo" >Cairo</option>
-            <option value="luxor">Luxor</option>
-            <option value="alexandria">Alexandria</option>
-            <option value="giza">Giza</option>
-            <option value="fayoum">Fayoum</option>
-            <option value="hurghada">Hurghada</option>
-            <option value="sharm el sheikh">Sharm El Sheikh</option>
+            <option value="Cairo" >Cairo</option>
+            <option value="Luxor">Luxor</option>
+            <option value="Alexandria">Alexandria</option>
+            <option value="Giza">Giza</option>
+            <option value="Fayoum">Fayoum</option>
+            <option value="Hurghada">Hurghada</option>
+            <option value="Sharm el sheikh">Sharm El Sheikh</option>
           </select>
         
         </div>

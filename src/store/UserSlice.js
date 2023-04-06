@@ -1,41 +1,53 @@
-import User from "@/models/User";
-import { createSlice } from "@reduxjs/toolkit";
+import User from '@/models/User';
+import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
-  userID: 0,
+  id: 0,
+  firstName: '',
+  secondName: '',
+  email: '',
+  nationality:'',
+  restaurantCuisinesLikes:[],
+  hotelPreferencesLikes:[],
+  attractionPreferencesLikes:[],
   isLoggedin: true,
-  info: {},
-  preferences: {
-    hotels: [],
-    restaurants: [],
-    attractions: [],
-  },
+  // info: {},
+  // preferences: {
+  //   hotels: [],
+  //   restaurants: [],
+  //   attractions: [],
+  // },
 };
-const UserSlice = createSlice({
-  name: "currentUser",
-  initialState,
+const UserSlice = createSlice ({
+  name: 'user',
+  initialState: initialState,
   reducers: {
-    logIn(state, action) {
-      state.isLoggedin = true;
-      state.userID = action.payload.id;
+    // updateObject: (state, action) => {
+    //   state.myObject = action.payload;
+    // },
+    logIn (state, action) {
+      // state.isLoggedin = true;
+      state.id = action.payload.id;
       state.firstName = action.payload.firstName;
-      state.secondName = action.payload.secondName;
-      state.email = action.payload.email;
-      state.country = action.payload.country;
+      // state.secondName = action.payload.secondName;
+      // state.email = action.payload.email;
+      // state.hotelPreferencesLikes=action.payload.hotelPreferencesLikes;
+      // state.restaurantCuisinesLikes=action.payload.restaurantCuisinesLikes;
+      // state.attractionPreferencesLikes=action.payload.attractionPreferencesLikes; 
+      // state.nationality=action.payload.nationality;
     },
-setUserId(state,action){
-state.userID= action.payload.id;
-},
-    logout(state) {
-      state.userID = 0;
-      state.info = {};
-      state.preferences = {
-        hotels: [],
-        restaurants: [],
-        attractions: [],
-      };
+    setUserId (state, action) {
+      state.userID = action.payload.idOfUser;
+    },
+    logout (state) {
+      // state.userID = 0;
+      // state.info = {};
+      // state.preferences = {
+      //   hotels: [],
+      //   restaurants: [],
+      //   attractions: [],
+      // };
       state.isLoggedin = false;
     },
-   
   },
 });
 export const UserActions = UserSlice.actions;
