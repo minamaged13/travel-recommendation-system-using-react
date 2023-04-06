@@ -10,7 +10,7 @@ const recommender = () => {
   const [recommendRestaurants, setRecommendRestaurants] = useState([]);
   const [recommendAttractions, setRecommendAttractions] = useState([]);
   const [requestValid,setRequestValid]=useState(false);
-  const[counter,setCounter]=useState(false)
+const[counter,setCounter]=useState(false)
 
   const selectedCityHandler = (event) => {
     setCounter(true);
@@ -72,14 +72,29 @@ const recommender = () => {
 
   return (
     <Fragment>
-      <div className="capitalize  ">
-        <div className="flex justify-center pt-48 font-mono h-96 bg-blue-500 ">
-          <label className="mr-5 text-5xl font-mono">where to go ?</label>
-          <select 
+      <div className="capitalize ">
+     <div class="" >
+     <div class="bg-gray-200 m-5 shadow-lg  overflow-hidden relative pt-5">
+    <div class="m-20 bg-white shadow-lg rounded-3xl  text-start w-1/2 py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
+        <h2 class=" text-4xl font-extrabold text-black  ">
+            <span class="block ">
+               Where do you want to go?
+            </span>
+            <span class="block text-blue-500 ">
+               pick a city
+            </span>
+        </h2>
+        <div></div>
+        <p class="text-xl mt-4 pr-10 text-gray-400">
+            I had noticed that both in the very poor and very rich extremes of society the mad were often allowed to mingle freely
+        </p>
+        <div class="lg:mt-0 lg:flex-shrink-0">
+            <div class="mt-10 inline-flex rounded-md shadow">
+            <select 
             required
             value={selectedCity}
             onChange={selectedCityHandler}
-            className="w-72 h-12 text-3xl border border-2 shadow-lg rounded-2xl border-black"
+            class="block px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm w-52 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
           >
           {!counter&& <option  >Choose City</option>}
             <option value="cairo" >Cairo</option>
@@ -90,8 +105,15 @@ const recommender = () => {
             <option value="hurghada">Hurghada</option>
             <option value="sharm el sheikh">Sharm El Sheikh</option>
           </select>
-        
+            </div>
         </div>
+    </div>
+    <div className=" ">
+    <img src="https://pngimg.com/uploads/sphinx/sphinx_PNG23.png"  class="absolute top-0 right-0 hidden h-full w-4/6 lg:block p-20"/>
+</div>
+</div>
+
+     </div>
         <div className="flex justify-center text-7xl mt-20 mb-16 ">
           <p>Special for you</p>
         </div>
@@ -123,7 +145,6 @@ const recommender = () => {
                     desc={item.description}
                     name={item.name}
                     src={item.imageUrl}
-                    id={item.id}
                   />
                 </div>
               ))}
