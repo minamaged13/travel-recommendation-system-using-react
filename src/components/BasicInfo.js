@@ -12,6 +12,12 @@ const logoutHandler=()=>{
 }
   return (
     <Fragment>
+       <div className="w-96 p-2 m-auto bg-white shadow-lg rounded-2xl mt-20 ">
+        <div className="flex items-center justify-center ">
+        <div className="w-32 rounded-full">
+          <img src="https://t4.ftcdn.net/jpg/03/59/58/91/360_F_359589186_JDLl8dIWoBNf1iqEkHxhUeeOulx0wOC5.jpg" class="rounded-full" />
+        </div>
+      </div>
       <div className="flex  capitalize p-8">
         <div className="grid grid-cols-2 gap-y-8 ">
           <label className="text-xl flex  text-gray-700"> first name : </label>
@@ -24,11 +30,20 @@ const logoutHandler=()=>{
           <p className="text-2xl"> {user.country}</p>
         </div>
       </div>
-      <div className="flex justify-center pt-44 ">
-        <button onClick={logoutHandler} className=" hover:shadow-2xl hover:bg-red-600  ml-20 p-4 font-semibold rounded-3xl bg-red-500">
-          LOG OUT
-        </button>
+
+
+      <div class="flex justify-center">
+      <div class="flex items-center  ">
+      <div className="flex justify-center pb-10 pr-10  ">
+        <button onClick={logoutHandler} className="text-xl p-4 px-7 bg-red-400 rounded-2xl hover:shadow-2xl">Logout</button>
       </div>
+      <div className="flex justify-center pb-10  ">
+        <button className="text-xl p-4 px-7 bg-blue-400 rounded-2xl hover:shadow-2xl">Edit</button>
+      </div>
+      </div>
+      </div>
+      </div>
+
     </Fragment>
   );
 };

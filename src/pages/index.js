@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-
+import classes from "../UI/Layout.module.css";
 import Image from "next/image";
-
+import SlideBar from "@/UI/SlideBar";
 import Card from "@/UI/Card";
 import Link from "next/link";
 import { useSelector } from "react-redux";
@@ -9,110 +9,134 @@ export default function Home() {
   const loggedIn = useSelector((state) => state.user.isLoggedin);
   const destinations = {
     card1: {
-      h: "luxor",
-      p: "One-third of the world's monuments just in one place",
+      h: "Luxor",
+      p: "one-third of the world's monuments just in one place",
+      src:"https://img.freepik.com/free-photo/female-abu-simbel-temple-southern-egypt-lake-nasser_181624-56071.jpg?w=996&t=st=1680730521~exp=1680731121~hmac=d434d43a10bb68f31b0cd6e46966140675727b1db1cd2d61e2fcaa139426c525"
     },
-    card2: { h: "Cairo", p: "enjoy delicious food with locals" },
-    card3: { h: "alexandria", p: "freska on  corniche is a mood changer " },
-    card4: { h: "giza", p: "explore giza pyramids" },
-    card5: { h: "fayoum", p: "enjoy wadi el rayan protectory" },
-    card6: { h: "hurghada", p: "wanna swim with the dolphines?" },
-    card7: { h: "sharm el sheikh", p: "nemo is waiting for you" },
+    card2: { h: "Cairo", p: "enjoy delicious food with locals" ,src:"https://www.propertyfinder.eg/blog/wp-content/uploads/2021/12/shutterstock_200091866-1-1-1-1-800x633.jpeg"},
+    card3: { h: "Alexandria", p: "freska on  corniche is a mood changer ",src:"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/0a/11/98/alexandria.jpg?w=700&h=-1&s=1" },
+    card4: { h: "Giza", p: "explore giza pyramids",src:"https://egypt.travel/media/2466/shutterstockrf_1037036482.jpg" },
+    card5: { h: "Hurghada", p: "wanna swim with the dolphines?" ,src:"https://upload.wikimedia.org/wikipedia/commons/d/d6/Hurghada_Hotels_R03.jpg"},
+    card6: { h: "Sharm El Sheikh", p: "nemo is waiting for you" ,src:"https://egyptescapes.com/wp-content/uploads/2019/12/sharm-el-sheihk.jpg"},
   };
 
   return (
-    <Fragment>
+   
+
+  <Fragment> 
+    <div class="relative z-20 flex items-center overflow-hidden bg-white ">
+        <div class="container relative flex px-6 py-16 mx-auto">
+            <div class="relative z-20 flex flex-col sm:w-2/3 lg:w-2/5">
+                <span class="w-20 h-2 mb-12 bg-gray-800 ">
+                </span>
+                <h1 class="flex flex-col text-6xl font-black leading-none text-gray-800 uppercase font-bebas-neue sm:text-8xl ">
+                    Egypt
+                    <span class="text-5xl sm:text-7xl">
+                       is waiting for you
+                    </span>
+                </h1>
+                <p class="text-sm text-gray-700 sm:text-base">
+                    Dimension of reality that makes change possible and understandable. An indefinite and homogeneous environment in which natural events and human existence take place.
+                </p>
+               
+            </div>
+            <div class="relative hidden sm:block sm:w-1/3 lg:w-3/5">
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/man-taking-a-self-portrait-at-the-pyramids-in-egypt-7259144-5904775.png"  class="absolute top-0 right-0 hidden h-full max-w-1/2 lg:block "/>
+               
+            </div>
+          
+        </div>
+        
+    </div>
+    <hr/>
+    <h5 class="text-5xl sm:text-4xl text-center mb-10 mt-20">
+          {" "}
+          What is your next destination?
+        </h5>
+  <div class="grid grid-cols-3 justify-items-center gap-4 pl-40 pr-40">
+  <div class=" p-6 rounded-lg">
+    <Card card={destinations.card1} classname="flex flex-col w-full h-full justify-center p-10 rounded-3xl shadow-2xl" />
+  </div>
+  <div class=" p-6 rounded-lg">
+    <Card card={destinations.card2}  classname="flex flex-col w-full h-full justify-center p-10 rounded-3xl shadow-2xl"/>
+  </div>
+  <div class="p-6 rounded-lg">
+    <Card card={destinations.card3} classname="flex flex-col w-full h-full justify-center p-10 rounded-3xl shadow-2xl" />
+  </div>
+  <div class=" p-6 rounded-lg">
+    <Card card={destinations.card4}classname="flex flex-col w-full h-full justify-center p-10 rounded-3xl shadow-2xl"/>
+  </div>
+  <div class=" p-6 rounded-lg">
+    <Card card={destinations.card5} classname="flex flex-col w-full h-full justify-center p-10 rounded-3xl shadow-2xl"/>
+  </div>
+  <div class=" p-6 rounded-lg">
+    <Card card={destinations.card6} classname="flex flex-col w-full h-full justify-center p-10 rounded-3xl shadow-2xl" />
+  </div>
+</div>
 
     
-    <div>
-      <div className="capitalize box-content h-screen  flex justify-between  bg-blue-500">
-        <div className="font-mono text-7xl mt-48 ml-12">
-          {" "}
-          egypt <br />
-          is waiting for you{" "}
+<footer class="bg-white  w-full py-8">
+<hr/>
+    <div class="max-w-screen-xl px-4 mx-auto">
+        <ul class="flex flex-wrap justify-between max-w-screen-md mx-auto text-lg font-light">
+            <li class="my-2">
+                <a class="text-gray-400 hover:text-gray-800  transition-colors duration-200" href="#">
+                    FAQ
+                </a>
+            </li>
+            <li class="my-2">
+                <a class="text-gray-400 hover:text-gray-800  transition-colors duration-200" href="#">
+                    Configuration
+                </a>
+            </li>
+            <li class="my-2">
+                <a class="text-gray-400 hover:text-gray-800  transition-colors duration-200" href="#">
+                    Github
+                </a>
+            </li>
+            <li class="my-2">
+                <a class="text-gray-400 hover:text-gray-800  transition-colors duration-200" href="#">
+                    LinkedIn
+                </a>
+            </li>
+        </ul>
+        <div class="pt-8 flex max-w-xs mx-auto items-center justify-between">
+            <a href="#" class="text-gray-400 transition-colors duration-200 hover:text-gray-800 ">
+                <svg width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 " viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z">
+                    </path>
+                </svg>
+            </a>
+            <a href="#" class="text-gray-400 transition-colors duration-200 hover:text-gray-800 ">
+                <svg width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 " viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z">
+                    </path>
+                </svg>
+            </a>
+            <a href="#" class="text-gray-400 transition-colors duration-200 hover:text-gray-800 ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 " viewBox="0 0 1792 1792">
+                    <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z">
+                    </path>
+                </svg>
+            </a>
+            <a href="#" class="text-gray-400 transition-colors duration-200 hover:text-gray-800 ">
+                <svg width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 " viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z">
+                    </path>
+                </svg>
+            </a>
+            <a href="#" class="text-gray-400 transition-colors duration-200 hover:text-gray-800 ">
+                <svg width="20" height="20" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 " viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1551 1476q15-6 26-3t11 17.5-15 33.5q-13 16-44 43.5t-95.5 68-141 74-188 58-229.5 24.5q-119 0-238-31t-209-76.5-172.5-104-132.5-105-84-87.5q-8-9-10-16.5t1-12 8-7 11.5-2 11.5 4.5q192 117 300 166 389 176 799 90 190-40 391-135zm207-115q11 16 2.5 69.5t-28.5 102.5q-34 83-85 124-17 14-26 9t0-24q21-45 44.5-121.5t6.5-98.5q-5-7-15.5-11.5t-27-6-29.5-2.5-35 0-31.5 2-31 3-22.5 2q-6 1-13 1.5t-11 1-8.5 1-7 .5h-10l-3-.5-2-1.5-1.5-3q-6-16 47-40t103-30q46-7 108-1t76 24zm-394-443q0 31 13.5 64t32 58 37.5 46 33 32l13 11-227 224q-40-37-79-75.5t-58-58.5l-19-20q-11-11-25-33-38 59-97.5 102.5t-127.5 63.5-140 23-137.5-21-117.5-65.5-83-113-31-162.5q0-84 28-154t72-116.5 106.5-83 122.5-57 130-34.5 119.5-18.5 99.5-6.5v-127q0-65-21-97-34-53-121-53-6 0-16.5 1t-40.5 12-56 29.5-56 59.5-48 96l-294-27q0-60 22-119t67-113 108-95 151.5-65.5 190.5-24.5q100 0 181 25t129.5 61.5 81 83 45 86 12.5 73.5v589zm-672 21q0 86 70 133 66 44 139 22 84-25 114-123 14-45 14-101v-162q-59 2-111 12t-106.5 33.5-87 71-32.5 114.5z">
+                    </path>
+                </svg>
+            </a>
         </div>
-        <iframe
-          className="rounded-lg m-10 mt-40"
-          width="700"
-          height="350"
-          src="https://www.youtube.com/embed/BapSQFJPMM0?autoplay=1 "
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;fullscreen"
-          allowFullscreen
-        ></iframe>
-      </div>
-      <div className="capitalize  h-screen flex justify-between pt-32 font-mono  bg-red-500">
-        <h1 className="text-7xl font-mono  text-black ml-16   ">
-          {" "}
-          travel <br></br>is to live{" "}
-        </h1>
-        <Image
-          src="/image1.jpg"
-          width={626}
-          height={418}
-          className="rounded-2xl ml-auto h-96 mr-24"
-        ></Image>
-      </div>
-      <div className="capitalize box-content  h-screen  pt-20 bg-white">
-        <h5 className="text-5xl text-center font-mono">
-          {" "}
-          what is your next destination?
-        </h5>
-        <div
-          className="grid grid-cols-3 gap-3 gap-y-6
-         mt-16 ml-12"
-        >
-          <Card
-            card={destinations.card1}
-            classname="block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-orange-500 dark:border-gray-700 dark:hover:bg-gray-700"
-          />
-          <Card
-            card={destinations.card2}
-            classname="block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-emerald-500 dark:border-gray-700 dark:hover:bg-gray-700"
-          />
-          <Card
-            card={destinations.card3}
-            classname="block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-cyan-400 dark:border-gray-700 dark:hover:bg-gray-700"
-          />
-          <Card
-            card={destinations.card4}
-            classname="block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-yellow-500 dark:border-gray-700 dark:hover:bg-gray-700"
-          />
-          <Card
-            card={destinations.card5}
-            classname="block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-sky-500 dark:border-gray-700 dark:hover:bg-gray-700"
-          />
-          <Card
-            card={destinations.card6}
-            classname="block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-fuchsia-500 dark:border-gray-700 dark:hover:bg-gray-700"
-          />
-          <Card
-            card={destinations.card7}
-            classname="block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-teal-400 dark:border-gray-700 dark:hover:bg-gray-700"
-          />
-        </div>
-      </div>
-
-      <div className="">
-        <footer>
-          <div className="text-4xl text-center p-16 bg-blue-500 capitalize">
-            {" "}
-            don't forget to enjoy your day <br />
-           { !loggedIn && <div>
-              <Link href="/register" className=" text-2xl text-white mr-28">
-                {" "}
-                sign up
-              </Link>
-              <Link href="/login" className=" text-2xl text-white">
-                {" "}
-                login
-              </Link>
-            </div>}
-          </div>
-        </footer>
-      </div>
     </div>
-    </Fragment>
+</footer>
+</Fragment>
+
+
+
   );
 }
