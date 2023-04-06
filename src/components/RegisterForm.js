@@ -131,7 +131,7 @@ const Form = () => {
         console.log("UserId",userId);
       })
       .catch (error => console.error (error));
-      dispatch(UserActions.logIn(userId));
+      dispatch(UserActions.setUserId(userId));
 
   }
 

@@ -21,13 +21,16 @@ export default function Home() {
   };
 
   return (
+    <Fragment>
+
+    
     <div>
       <div className="capitalize box-content h-screen  flex justify-between  bg-blue-500">
-        <p className="font-mono text-7xl mt-48 ml-12">
+        <div className="font-mono text-7xl mt-48 ml-12">
           {" "}
           egypt <br />
           is waiting for you{" "}
-        </p>
+        </div>
         <iframe
           className="rounded-lg m-10 mt-40"
           width="700"
@@ -36,7 +39,7 @@ export default function Home() {
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;fullscreen"
-          allowfullscreen
+          allowFullscreen
         ></iframe>
       </div>
       <div className="capitalize  h-screen flex justify-between pt-32 font-mono  bg-red-500">
@@ -93,7 +96,7 @@ export default function Home() {
 
       <div className="">
         <footer>
-          <p className="text-4xl text-center p-16 bg-blue-500 capitalize">
+          <div className="text-4xl text-center p-16 bg-blue-500 capitalize">
             {" "}
             don't forget to enjoy your day <br />
            { !loggedIn && <div>
@@ -106,9 +109,10 @@ export default function Home() {
                 login
               </Link>
             </div>}
-          </p>
+          </div>
         </footer>
       </div>
     </div>
+    </Fragment>
   );
 }

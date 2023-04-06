@@ -1,24 +1,11 @@
 import User from "@/models/User";
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  userID: 2,
+  userID: 0,
   isLoggedin: true,
-  info: {
-    firstName: " mina ",
-    secondName: "maurice",
-    email: "mina@test.com",
-    country: "spain",
-  },
+  info: {},
   preferences: {
-    hotels: [
-      { id: "1", text: "Restaurant" },
-      { id: "2", text: "Air conditioning" },
-      { id: "3", text: "Laundry service" },
-      { id: "4", text: "Non-smoking rooms" },
-      { id: "5", text: "24-hour front desk" },
-      { id: "6", text: "Bar / lounge" },
-      { id: "7", text: "Family room" },
-    ],
+    hotels: [],
     restaurants: [],
     attractions: [],
   },
@@ -35,13 +22,20 @@ const UserSlice = createSlice({
       state.email = action.payload.email;
       state.country = action.payload.country;
     },
-
+setUserId(state,action){
+state.userID= action.payload.id;
+},
     logout(state) {
       state.userID = 0;
+      state.info = {};
+      state.preferences = {
+        hotels: [],
+        restaurants: [],
+        attractions: [],
+      };
+      state.isLoggedin = false;
     },
-    // loggedIn (state) {
-    //   state.isLoggedin = true;
-    // },
+   
   },
 });
 export const UserActions = UserSlice.actions;

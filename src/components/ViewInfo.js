@@ -17,7 +17,6 @@ const ViewInfo = (props) => {
       <div className="p-4"></div>
       <div className="p-8">
         <p className="text-gray-800 text-5xl "> name</p>
-
         <p className="text-gray-500 text-sm">description</p>
       </div>
     </Fragment>

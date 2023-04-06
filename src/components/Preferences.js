@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 const Preferences = (props) => {
   const [next, setNext] = useState(0);
   const loggedIn = useSelector((state) => state.user.isLoggedin);
+  const userId= useSelector((state)=>state.user.userID);//use it to put yser preferences;
   const nextHandler = () => {
     setNext((prev) => (prev = prev + 1));
   };
@@ -116,7 +117,10 @@ const Preferences = (props) => {
     setChoosenAttractions([]);
   };
   /////
-  const submitHandler = () => {};
+  const submitHandler = () => {
+/////http request needed here
+/// use userid in line 7 to put the selected preferences in the database 
+  };
   return (
     <Fragment>
       <div className="capitalize flex flex-col justify-center items-center  ">

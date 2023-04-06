@@ -18,7 +18,7 @@ const recommender = () => {
     setSelectedCity(event.target.value);
     setTimeout(()=>{
       setRequestValid(true)
-    },4000)
+    },3000)
   
 
         setRequestValid(false)
