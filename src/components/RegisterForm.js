@@ -110,6 +110,7 @@ const Form = () => {
     console.log(user);
     setFormSubmitted(true);
     dispatch(registerActions.toggle());
+    let idOfUser;
     await fetch ('http://localhost:4000/users', {
       method: 'POST',
       headers: {
@@ -127,11 +128,11 @@ const Form = () => {
         console.log ('Response ---------->');
         const data = await response.json ();
         console.log (data);
-        userId=data.id;
-        console.log("UserId",userId);
+        idOfUser=data.id;
+        console.log("idOfUser: ",idOfUser);
       })
       .catch (error => console.error (error));
-      dispatch(UserActions.setUserId(userId));
+      dispatch(UserActions.setUserId(idOfUser));
 
   }
 
