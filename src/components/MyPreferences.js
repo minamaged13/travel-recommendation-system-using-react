@@ -3,7 +3,10 @@ import { useSelector } from "react-redux";
 import Preferences from "./Preferences";
 
 const MyPreferences = () => {
-  const preferences = useSelector((state) => state.user.preferences);
+  // const preferences = useSelector((state) => state.user.preferences);
+  const restaurantCuisinesLikes = useSelector((state)=> state.user.restaurantCuisinesLikes);
+  const hotelPreferencesLikes = useSelector((state)=> state.user.hotelPreferencesLikes);
+  const attractionPreferencesLikes = useSelector((state)=> state.user.attractionPreferencesLikes);
 
   return (
     <Fragment className="">
@@ -12,7 +15,7 @@ const MyPreferences = () => {
           <label className="text-3xl bg-red-500 rounded-lg p-3 w-60 ">
             hotel aminities
           </label>
-          {preferences.hotels.map((item) => (
+          {hotelPreferencesLikes.map((item) => (
             <li className="pl-2 text-xl mt-4 ">{item.text}</li>
           ))}
         </ul>
@@ -20,7 +23,7 @@ const MyPreferences = () => {
           <label className="text-3xl bg-yellow-500 rounded-lg p-3 w-auto">
             restaurants cuisines
           </label>
-          {preferences.restaurants.map((item) => (
+          {restaurantCuisinesLikes.map((item) => (
             <li className="pl-2 text-xl mt-4 ">{item.text}</li>
           ))}
         </ul>
@@ -28,7 +31,7 @@ const MyPreferences = () => {
           <label className="text-3xl bg-green-500 rounded-lg p-3 w-42">
             attractions
           </label>
-          {preferences.attractions.map((item) => (
+          {attractionPreferencesLikes.map((item) => (
             <li className="pl-2 text-xl mt-4 ">{item.text}</li>
           ))}
         </ul>
@@ -38,9 +41,12 @@ const MyPreferences = () => {
       </div>
       {false && (
         <Preferences
-          restaurantsPreferences={preferences.restaurants}
-          hotelsPreferences={preferences.hotels}
-          attractionsPreferences={preferences.attractions}
+          // restaurantsPreferences={preferences.restaurants}
+          // hotelsPreferences={preferences.hotels}
+          // attractionsPreferences={preferences.attractions}
+          restaurantsPreferences={restaurantCuisinesLikes}
+          hotelsPreferences={hotelPreferencesLikes}
+          attractionsPreferences={attractionPreferencesLikes}
         ></Preferences>
       )}
     </Fragment>

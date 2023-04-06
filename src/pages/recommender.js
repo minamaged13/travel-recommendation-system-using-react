@@ -26,7 +26,6 @@ const recommender = () => {
   };
   ///hotels
   useEffect(() => {
-    debugger;
     console.log("selectedCity", selectedCity);
     console.log("userID in page recommender: ", userID)
     //ToDO: pass the user id & city name to the backend url

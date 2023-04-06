@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { UserActions } from "@/store/UserSlice";
 const BasicInfo = () => {
-  const user = useSelector((state) => state.user.info);
+  const user = useSelector((state) => state.user);
   const router=useRouter();
   const dispatch= useDispatch();
 const logoutHandler=()=>{

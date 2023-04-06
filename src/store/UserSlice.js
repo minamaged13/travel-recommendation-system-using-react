@@ -6,6 +6,7 @@ const initialState = {
   secondName: '',
   email: '',
   nationality:'',
+  country:'',
   restaurantCuisinesLikes:[],
   hotelPreferencesLikes:[],
   attractionPreferencesLikes:[],
@@ -28,12 +29,13 @@ const UserSlice = createSlice ({
       // state.isLoggedin = true;
       state.id = action.payload.id;
       state.firstName = action.payload.firstName;
-      // state.secondName = action.payload.secondName;
-      // state.email = action.payload.email;
-      // state.hotelPreferencesLikes=action.payload.hotelPreferencesLikes;
-      // state.restaurantCuisinesLikes=action.payload.restaurantCuisinesLikes;
-      // state.attractionPreferencesLikes=action.payload.attractionPreferencesLikes; 
-      // state.nationality=action.payload.nationality;
+      state.secondName = action.payload.secondName;
+      state.email = action.payload.email;
+      state.hotelPreferencesLikes=action.payload.hotelPreferencesLikes;
+      state.restaurantCuisinesLikes=action.payload.restaurantCuisinesLikes;
+      state.attractionPreferencesLikes=action.payload.attractionPreferencesLikes; 
+      state.nationality=action.payload.nationality;
+      state.country=action.payload.country;
     },
     setUserId (state, action) {
       state.userID = action.payload.idOfUser;
