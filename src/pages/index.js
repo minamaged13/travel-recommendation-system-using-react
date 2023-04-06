@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-import classes from "../UI/Layout.module.css";
+
 import Image from "next/image";
-import SlideBar from "@/UI/SlideBar";
+
 import Card from "@/UI/Card";
 import Link from "next/link";
 import { useSelector } from "react-redux";

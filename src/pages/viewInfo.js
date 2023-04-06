@@ -7,6 +7,7 @@ const viewInfo=()=>{
     console.log(query.id);
 return<Fragment>
     <ViewInfo id={query.id}/>
+    
 </Fragment>
 }
 export default viewInfo

@@ -11,7 +11,7 @@ const DropDownList = (props) => {
         required
       >
         
-        <option value="albanian">Albanian</option>
+        <option   value="albanian">Albanian</option>
         <option value="algerian">Algerian</option>
         <option value="american">American</option>
         <option value="andorran">Andorran</option>

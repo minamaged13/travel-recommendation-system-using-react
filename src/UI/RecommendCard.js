@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 const RecommendCard = (props) => {
-  const [query, setQuery] = useState({name:''})
+  
   const router= useRouter();
   const viewHandler=()=>{
-    setQuery({name:`${props.name}`})
+  
   router.push({
     pathname:"/viewInfo",
     query:{id:props.id},

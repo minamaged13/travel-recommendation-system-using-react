@@ -1,7 +1,8 @@
 import Image from "next/image";
 import React, { Fragment } from "react";
 
-const ViewInfo = () => {
+const ViewInfo = (props) => {
+  const id= props.id
   const imageSrc = "/travel.png";
   return (
     <Fragment>
@@ -17,7 +18,7 @@ const ViewInfo = () => {
       <div className="p-8">
         <p className="text-gray-800 text-5xl "> name</p>
 
-        <p className="text-gray-500 text-sm"></p>
+        <p className="text-gray-500 text-sm">description</p>
       </div>
     </Fragment>
   );
