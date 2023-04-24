@@ -35,8 +35,9 @@ export default function Home() {
                        is waiting for you
                     </span>
                 </h1>
-                <p class="text-sm text-gray-700 sm:text-base">
-                    Dimension of reality that makes change possible and understandable. An indefinite and homogeneous environment in which natural events and human existence take place.
+                <br/>
+                <p class="text-2xl text-gray-700 sm:text-2xl">
+                A one-stop tool for travelers planning their vacation in Egypt
                 </p>
                
             </div>

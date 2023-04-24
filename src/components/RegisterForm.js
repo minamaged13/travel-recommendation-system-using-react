@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 import {UserActions} from "@/store/UserSlice";
 
 
-const Form = () => {
+const Form = (props) => {
   const router = useRouter();
-  let userId=useSelector(state=>state.user.id);
+  
   const dispatch = useDispatch();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [enteredFirstName, setEnteredFirstName] = useState("");
@@ -111,7 +111,7 @@ const Form = () => {
     setFormSubmitted(true);
     dispatch(registerActions.toggle());
     let idOfUser;
-    await fetch ('http://localhost:4000/users', {
+    const response=await fetch ('http://localhost:4000/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -122,17 +122,31 @@ const Form = () => {
         email: user.email,
         password: user.password,
         nationality:user.nationality
+
       }),
     })
-      .then ( async response => {
-        console.log ('Response ---------->');
-        const data = await response.json ();
-        console.log (data);
-        idOfUser=data.id;
-        console.log("idOfUser: ",idOfUser);
-      })
-      .catch (error => console.error (error));
-      dispatch(UserActions.setUserId(idOfUser));
+    if (response.ok) {
+      console.log("response.ok");
+      const data = await response.json ();
+      console.log("Data Of new User: ",data);
+
+      dispatch (UserActions.logIn ({
+        id: data.id, 
+        firstName: data.firstName,
+        secondName: data.secondName,
+        email: data.email,
+        country: data.country,
+        hotelPreferencesLikes:data.hotelPreferencesLikes,
+        restaurantCuisinesLikes:data.restaurantCuisinesLikes,
+        //attraction
+
+      } ));
+      console.log ('Success:', data.id);      // router.push ('/profile');
+      
+      // console.log ('UserID: ', userIDState);
+    } else {
+      console.error ('Error:', response.status);
+    }
 
   }
 

@@ -17,23 +17,24 @@ function MainNavigation() {
                   
                     <div class="hidden md:block">
                         <div class="flex items-baseline ml-10 space-x-4">
-                            <a class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/#">
+                            <Link class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/">
                                 Home
-                            </a>
+                            </Link>
                             {loggedIn&&
-                            <a class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/recommender">
+                            <Link class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/recommender">
                                 Explore
-                            </a>}
+                            </Link>}
                             {!loggedIn &&
-                            <a class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/register">
+                            <Link class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/register">
                                 Register
-                            </a>}
-                            {!loggedIn && <a class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/login">
+                            </Link>}
+                            {!loggedIn && <Link class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/login">
                                 Login
-                            </a>}
-                            {loggedIn && <a class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/profile">
+                            </Link>}
+                            
+                            {loggedIn && <Link class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/profile">
                                 Profile
-                            </a>}
+                            </Link>}
                         </div>
                     </div>
                 </div>
@@ -53,18 +54,18 @@ function MainNavigation() {
         </div>
         <div class="md:hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a class="text-black-300 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/#">
+                <Link class="text-black-300 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/">
                     Home
-                </a>
-                <a class="text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/#">
+                </Link>
+                <Link class="text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/#">
                     Gallery
-                </a>
-                <a class="text-gray-300 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/#">
+                </Link>
+                <Link class="text-gray-300 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/">
                     Content
-                </a>
-                <a class="text-gray-300 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/#">
+                </Link>
+                <Link class="text-gray-300 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium" href="/">
                     Contact
-                </a>
+                </Link>
             </div>
         </div>
     </nav>

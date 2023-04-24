@@ -9,6 +9,7 @@ const LoginForm = () => {
   const router = useRouter ();
   const loggedIn = useSelector (state => state.user.loggedIn);
   const userIDState = useSelector (state => state.user.id);
+  const [errorMessages, setErrorMessages] = useState (false);
   // const myObject = useSelector (state => state.user.myObject);
 
   const [enteredPassword, setEnteredPassword] = useState ('');
@@ -49,18 +50,29 @@ const LoginForm = () => {
       }),
     });
     if (response.ok) {
+      console.log ('response.ok');
       const data = await response.json ();
-      dispatch (UserActions.logIn ({
-        id: data.id, 
-        firstName: data.firstName
-      } ));
+      console.log ('Data: ', data);
+
+      dispatch (
+        UserActions.logIn ({
+          id: data.id,
+          firstName: data.firstName,
+          secondName: data.secondName,
+          email: data.email,
+          nationality: data.nationality,
+          hotelPreferencesLikes: data.hotelPreferencesLikes,
+          restaurantCuisinesLikes: data.restaurantCuisinesLikes,
+          attractionPreferencesLikes: data.attractionPreferencesLikes,
+          //attraction
+        })
+      );
       console.log ('Success:', data.id);
-      router.push ('/recommender');
-      console.log ('UserID: ', userIDState);
+      router.replace ('/recommender');
     } else {
       console.error ('Error:', response.status);
+      setErrorMessages (true);
     }
-    router.replace ('/recommender');
   }
 
   let formIsValid = false;
@@ -90,6 +102,10 @@ const LoginForm = () => {
             {enteredEmailIsInvalid &&
               <p className=" text-red-700 text-sm  ">
                 Please enter a valid email.
+              </p>}
+            {errorMessages &&
+              <p className=" text-red-700 text-sm  ">
+                Wrong email or password.
               </p>}
           </div>
           <div className=" ml-8 mb-6">

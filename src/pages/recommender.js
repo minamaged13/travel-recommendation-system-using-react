@@ -2,6 +2,7 @@ import RecommendCard from "@/UI/RecommendCard";
 import { data } from "autoprefixer";
 import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import recommendRestaurantsCard from "@/UI/RecommendRestaurantsCard";
 
 const recommender = () => {
   const userID = useSelector((state) => state.user.id);
@@ -18,7 +19,7 @@ const[counter,setCounter]=useState(false)
     setSelectedCity(event.target.value);
     setTimeout(()=>{
       setRequestValid(true)
-    },3000)
+    },5000)
   
 
         setRequestValid(false)
@@ -34,7 +35,7 @@ const[counter,setCounter]=useState(false)
         return response.json();
       })
       .then((data) => {
-        // console.log ('Data: ', data);
+        console.log ('Data hotels : ', data);
         setRecommendHotels(data);
       })
       .catch((error) => console.error(error));
@@ -50,7 +51,7 @@ const[counter,setCounter]=useState(false)
         return response.json();
       })
       .then((data) => {
-        // console.log ('Data: ', data);
+        console.log ('Data attractions: ', data);
         setRecommendAttractions(data);
       })
       .catch((error) => console.error(error));
@@ -65,7 +66,7 @@ const[counter,setCounter]=useState(false)
         return response.json();
       })
       .then((data) => {
-        console.log("Data: ", data);
+        console.log("Data restaurants : ", data);
         setRecommendRestaurants(data);
       })
       .catch((error) => console.error(error));
@@ -136,14 +137,15 @@ const[counter,setCounter]=useState(false)
             <p className="text-5xl mb-8 border-white flex inline-flex mt-3 ">
               hotels for you
             </p>
-            <div className=" flex items-center  bg-yellow-300 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
+
+            <div className=" flex items-center  bg-blue-200 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
               {recommendHotels.map((item) => (
                 <div
                   key={item.id}
                   className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  "
                 >
                   <RecommendCard
-                    desc={item.description}
+                     desc={item.description || ""}
                     name={item.name}
                     src={item.imageUrl}
                   />
@@ -152,19 +154,20 @@ const[counter,setCounter]=useState(false)
             </div>
           </div>
 
+
           {/* restaurants */}
           <div className="h-screen p-9 shadow-2xl mt-11 ">
             <p className="text-5xl mb-8 border-white flex inline-flex mt-3 ">
               restaurants for you
             </p>
-            <div className=" flex items-center  bg-yellow-300 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
+            <div className=" flex items-center  bg-blue-200 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
               {recommendRestaurants.map((item) => (
                 <div
                   key={item.id}
                   className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  "
                 >
                   <RecommendCard
-                    desc={item.cuisines}
+                    desc={item.cuisines || ""}
                     name={item.name}
                     src={item.imageUrl}
                   />
@@ -177,14 +180,14 @@ const[counter,setCounter]=useState(false)
             <p className="text-5xl mb-8 border-white flex inline-flex mt-3 ">
               attractions for you
             </p>
-            <div className=" flex items-center  bg-yellow-300 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
+            <div className=" flex items-center  bg-blue-200 justify-start scroll-auto shadow-2xl rounded-lg snap-x snap-mandatory scroll-m-10px overflow-scroll ">
               {recommendAttractions.map((item) => (
                 <div
                   key={item.id}
                   className=" snap-center  scroll-ml-18 snap-always shrink-0  pr-10  "
                 >
                   <RecommendCard
-                    desc={item.description}
+                    desc={item.description || ""}
                     name={item.name}
                     src={item.imageUrl}
                   />

@@ -18,7 +18,7 @@ const MyPreferences = () => {
             <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"/>
           </label>
           {hotelPreferencesLikes.map((item) => (
-            <li className="pl-2 text-xl mt-4 ">{item.text}</li>
+            <li className="pl-2 text-xl mt-4 ">{item.preference}</li>
           ))}
         </ul>
         <ul className="text-center  ">
@@ -27,7 +27,7 @@ const MyPreferences = () => {
             <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"/>
           </label>
           {restaurantCuisinesLikes.map((item) => (
-            <li className="pl-2 text-xl mt-4 ">{item.text}</li>
+            <li className="pl-2 text-xl mt-4 ">{item.cuisine}</li>
           ))}
         </ul>
         <ul className=" text-center ">
@@ -36,7 +36,7 @@ const MyPreferences = () => {
             <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"/>
           </label>
           {attractionPreferencesLikes.map((item) => (
-            <li className="pl-2 text-xl mt-4 ">{item.text}</li>
+            <li className="pl-2 text-xl mt-4 ">{item.preference}</li>
           ))}
         </ul>
         </div>

@@ -1,10 +1,17 @@
 import { Fragment } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { UserActions } from "@/store/UserSlice";
+import { useRouter } from "next/router";
 const Preferences = (props) => {
+  const router = useRouter();
   const [next, setNext] = useState(0);
   const loggedIn = useSelector((state) => state.user.isLoggedin);
-  const userId= useSelector((state)=>state.user.userID);//use it to put yser preferences;
+  const userId= useSelector((state)=>state.user.id);//use it to put yser preferences;
+  // const userId=props.userId;
+  const dispatch = useDispatch();
+
   const nextHandler = () => {
     setNext((prev) => (prev = prev + 1));
   };
@@ -117,13 +124,52 @@ const Preferences = (props) => {
     setChoosenAttractions([]);
   };
   /////
-  const submitHandler = () => {
-/////http request needed here
-/// use userid in line 7 to put the selected preferences in the database 
-    console.log("user id: ",userId);
+  async function  submitHandler(){
+
+    console.log("user id edd: ",userId);
     console.log("Chosen Aminties: ",choosenAminities);
     console.log("Chosen Cusines: ",choosenCusines);
     console.log("Chosen Attractions: ",choosenAttractions);
+  
+    const response = await  fetch (`http://127.0.0.1:4000/users/preferences/${userId}`, {
+    // const response = await  fetch (`http://127.0.0.1:4000/users/${userId}/restaurants/cuisines`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Origin': '*' 
+      },
+      body: JSON.stringify ({
+        restaurantCuisinesLikes: choosenCusines,
+        hotelPreferencesLikes: choosenAminities,
+        attractionPreferencesLikes: choosenAttractions,
+    }),
+    });
+    console.log("response: ",response)
+    if (response.status ===200) {
+
+      console.log("response.ok");
+      const data = await  response.json ();
+      console.log("Data: ",data);
+
+      dispatch (UserActions.logIn ({
+        id: data.id, 
+        firstName: data.firstName,
+        secondName: data.secondName,
+        email: data.email,
+        country: data.country,
+        hotelPreferencesLikes:data.hotelPreferencesLikes,
+        restaurantCuisinesLikes:data.restaurantCuisinesLikes,
+        attractionPreferencesLikes:data.attractionPreferencesLikes,
+
+      } ));
+      console.log ('Success in preferences :', data.id);
+      
+      // console.log ('UserID: ', userIDState);
+    } else {
+      console.error ('Error:', response.status);
+    }
+    router.replace ('/');
+
   };
   return (
     <Fragment>
