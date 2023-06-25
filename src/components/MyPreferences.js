@@ -6,6 +6,7 @@ const MyPreferences = () => {
   // const preferences = useSelector((state) => state.user.preferences);
   const router = useRouter();
   const restaurantCuisinesLikes = useSelector((state)=> state.user.restaurantCuisinesLikes);
+  console.log("restaurantCuisinesLikes")
   console.log(restaurantCuisinesLikes)
   const hotelPreferencesLikes = useSelector((state)=> state.user.hotelPreferencesLikes);
   const attractionPreferencesLikes = useSelector((state)=> state.user.attractionPreferencesLikes);
@@ -22,7 +23,7 @@ const edit=()=>{
             <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"/>
           </label>
           {hotelPreferencesLikes.map((item) => (
-            <li className="pl-2 text-xl mt-4 ">{item.text}</li>
+            <li className="pl-2 text-xl mt-4 ">{item.preference}</li>
           ))}
         </ul>
         <ul className="text-center  ">
