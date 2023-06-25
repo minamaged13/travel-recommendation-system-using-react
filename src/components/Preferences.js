@@ -134,9 +134,9 @@ const Preferences = (props) => {
         // 'Access-Control-Allow-Origin': '*' 
       },
       body: JSON.stringify ({
-        restaurantCuisinesLikes: choosenCusines,
-        hotelPreferencesLikes: choosenAminities,
-        attractionPreferencesLikes: choosenAttractions,
+        restaurantCuisines: choosenCusines,
+        hotelPreferences: choosenAminities,
+        attractionPreferences: choosenAttractions,
     }),
     });
     console.log("response: ",response)
