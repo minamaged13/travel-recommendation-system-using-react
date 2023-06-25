@@ -5,7 +5,6 @@ const login = () => {
   return (
     <Fragment >
       <div className={classes.login_background}>
-
       <LoginForm />
       </div>
     </Fragment>

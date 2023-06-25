@@ -4,12 +4,11 @@ import DropDownList from "./DropDownList";
 import { useDispatch, useSelector } from "react-redux";
 import { registerActions } from "@/store/registerSlice";
 import { useRouter } from "next/router";
-import {UserActions} from "@/store/UserSlice";
-
+import { UserActions } from "@/store/UserSlice";
 
 const Form = (props) => {
+  const user = useSelector((state) => state.user);
   const router = useRouter();
-  
   const dispatch = useDispatch();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [enteredFirstName, setEnteredFirstName] = useState("");
@@ -65,7 +64,6 @@ const Form = (props) => {
   };
   const passwordInputChangeHandler = (e) => {
     setEnteredPassword(e.target.value);
-    
   };
   const passwordInputBlurHandler = (event) => {
     setEnteredPasswordTouched(true);
@@ -93,61 +91,63 @@ const Form = (props) => {
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-    regsister();
+    register();
     // router.push('/')
-  }
+  };
 
-  async function regsister () {
-    console.log("enteredFirstName", enteredFirstName);
-    const user = new User(
-      enteredFirstName,
-      enteredSecondName,
-      enteredEmail,
-      enteredPassword,
-      enteredNationality,
-    );
-    console.log("user");
-    console.log(user);
-    setFormSubmitted(true);
-    dispatch(registerActions.toggle());
-    let idOfUser;
-    const response=await fetch ('http://localhost:4000/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify ({
-        firstName: user.firstName,
-        secondName: user.lastName,
-        email: user.email,
-        password: user.password,
-        nationality:user.nationality
-
-      }),
-    })
-    if (response.ok) {
-      console.log("response.ok");
-      const data = await response.json ();
-      console.log("Data Of new User: ",data);
-
-      dispatch (UserActions.logIn ({
-        id: data.id, 
-        firstName: data.firstName,
-        secondName: data.secondName,
-        email: data.email,
-        country: data.country,
-        hotelPreferencesLikes:data.hotelPreferencesLikes,
-        restaurantCuisinesLikes:data.restaurantCuisinesLikes,
-        //attraction
-
-      } ));
-      console.log ('Success:', data.id);      // router.push ('/profile');
-      
-      // console.log ('UserID: ', userIDState);
+  async function register() {
+    if (user.isLoggedIn) {
     } else {
-      console.error ('Error:', response.status);
-    }
+      console.log("enteredFirstName", enteredFirstName);
+      const user = new User(
+        enteredFirstName,
+        enteredSecondName,
+        enteredEmail,
+        enteredPassword,
+        enteredNationality
+      );
+      console.log("user");
+      console.log(user);
+      setFormSubmitted(true);
+      dispatch(registerActions.toggle());
+      let idOfUser;
+      const response = await fetch("http://localhost:4000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: user.firstName,
+          secondName: user.lastName,
+          email: user.email,
+          password: user.password,
+          nationality: user.nationality,
+        }),
+      });
+      if (response.ok) {
+        console.log("response.ok");
+        const data = await response.json();
+        console.log("Data Of new User: ", data);
 
+        dispatch(
+          UserActions.logIn({
+            id: data.id,
+            firstName: data.firstName,
+            secondName: data.secondName,
+            email: data.email,
+            country: data.country,
+            hotelPreferencesLikes: data.hotelPreferencesLikes,
+            restaurantCuisinesLikes: data.restaurantCuisinesLikes,
+            //attraction
+          })
+        );
+        console.log("Success:", data.id); // router.push ('/profile');
+
+        // console.log ('UserID: ', userIDState);
+      } else {
+        console.error("Error:", response.status);
+      }
+    }
   }
 
   return (
@@ -168,6 +168,8 @@ const Form = (props) => {
                 onBlur={firstNameInputBlurHandler}
                 value={enteredFirstName}
                 required
+                // defaultValue={user.firstName}
+               
               />
               {nameInputIsInvalid && (
                 <p className="text-red-700 text-lg">
@@ -178,13 +180,15 @@ const Form = (props) => {
             <div className=" ml-8 mb-6 ">
               <label htmlFor="name">second Name</label>
               <input
-                className=" flex border rounded-lg border-black   "
+                className=" flex border rounded-lg border-black "
                 type="text"
                 id="secondName"
                 onChange={secondNameInputChangeHandler}
                 onBlur={secondNameInputBlurHandler}
                 value={enteredSecondName}
                 required
+                defaultValue={user.secondName}
+              
               />
               {nameInputIsInvalid && (
                 <p className="text-red-700 text-lg">
@@ -202,6 +206,7 @@ const Form = (props) => {
                 onBlur={emailInputBlurHandler}
                 value={enteredEmail}
                 required
+               
               />
               {enteredEmailIsInvalid && (
                 <p className=" text-red-700 text-lg">
@@ -238,7 +243,9 @@ const Form = (props) => {
               {enteredConfirmPassword !== enteredPassword &&
                 enteredConfirmPasswordTouched &&
                 enteredConfirmPassword.length > 0 && (
-                  <p className="text-lg text-red-700">passwords are not matched</p>
+                  <p className="text-lg text-red-700">
+                    passwords are not matched
+                  </p>
                 )}
             </div>
             <div className="ml-8 mb-6">
@@ -253,7 +260,7 @@ const Form = (props) => {
                 className="ml-20 disabled:cursor-not-allowed disabled:bg-black bg-stromi-200 hover:bg-stromi-100 text-white font-bold py-2 px-4 rounded-full mt-6 transition delay-100 duration-300 ease-in-out "
                 disabled={!formIsValid}
               >
-                Sign Up
+                {props.signUp}
               </button>
             </div>
           </div>

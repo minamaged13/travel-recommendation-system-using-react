@@ -1,61 +1,63 @@
-import {Fragment, useState} from 'react';
-import Link from 'next/link';
-import {UserActions} from '@/store/UserSlice';
-import {useDispatch, useSelector} from 'react-redux';
-import {useRouter} from 'next/router';
+import { Fragment, useState } from "react";
+import Link from "next/link";
+import { UserActions } from "@/store/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import useLogin from "@/hooks/useLogin";
 
 const LoginForm = () => {
-  const dispatch = useDispatch ();
-  const router = useRouter ();
-  const loggedIn = useSelector (state => state.user.loggedIn);
-  const userIDState = useSelector (state => state.user.id);
-  const [errorMessages, setErrorMessages] = useState (false);
-  // const myObject = useSelector (state => state.user.myObject);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const userIDState = useSelector((state) => state.user.id);
+  const [
+    errorMessages,
+    setErrorMessages,
+    enteredPassword,
+    setEnteredPassword,
+    enteredPasswordTouched,
+    setEnteredPasswordTouched,
+    enteredEmail,
+    setEnteredEmail,
+    enteredEmailTouched,
+    setEnteredEmailTouched,
+    enteredEmailIsValid,
+    enteredEmailIsInvalid,
+    enteredPasswordIsValid,
+  ] = useLogin();
+  const passwordInputChangeHandler = (e) => {
+    setEnteredPassword(e.target.value);
+  };
+  const passwordInputBlurHandler = (event) => {
+    setEnteredPasswordTouched(true);
+  };
+  const emailInputChangeHandler = (event) => {
+    setEnteredEmail(event.target.value);
+  };
+  const emailInputBlurHandler = (event) => {
+    setEnteredEmailTouched(true);
+  };
+  
+  async function login(event) {
+    event.preventDefault();
 
-  const [enteredPassword, setEnteredPassword] = useState ('');
-  const [enteredPasswordTouched, setEnteredPasswordTouched] = useState (false);
-  const [enteredEmail, setEnteredEmail] = useState ('');
-  const [enteredEmailTouched, setEnteredEmailTouched] = useState (false);
-  const enteredEmailIsValid = enteredEmail.includes ('@');
-  const enteredEmailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
-
-  const enteredPasswordIsValid = enteredPassword.length >= 8;
-  const passwordInputChangeHandler = e => {
-    setEnteredPassword (e.target.value);
-  };
-  const passwordInputBlurHandler = event => {
-    setEnteredPasswordTouched (true);
-  };
-  const emailInputChangeHandler = event => {
-    setEnteredEmail (event.target.value);
-  };
-  const emailInputBlurHandler = event => {
-    setEnteredEmailTouched (true);
-  };
-  // const formSubmissionHandler = event => {
-  //   event.preventDefault ();
-  //   login ();
-  // };
-  async function login (event) {
-    event.preventDefault ();
-
-    const response = await fetch ('http://localhost:4000/users/login', {
-      method: 'POST',
+    const response = await fetch("http://localhost:4000/users/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify ({
+      body: JSON.stringify({
         email: enteredEmail,
         password: enteredPassword,
       }),
     });
     if (response.ok) {
-      console.log ('response.ok');
-      const data = await response.json ();
-      console.log ('Data: ', data);
+      console.log("response.ok");
+      const data = await response.json();
+      console.log("Data: ", data);
 
-      dispatch (
-        UserActions.logIn ({
+      dispatch(
+        UserActions.logIn({
           id: data.id,
           firstName: data.firstName,
           secondName: data.secondName,
@@ -67,11 +69,11 @@ const LoginForm = () => {
           //attraction
         })
       );
-      console.log ('Success:', data.id);
-      router.replace ('/recommender');
+      console.log("Success:", data.id);
+      router.replace("/");
     } else {
-      console.error ('Error:', response.status);
-      setErrorMessages (true);
+      console.error("Error:", response.status);
+      setErrorMessages(true);
     }
   }
 
@@ -99,18 +101,21 @@ const LoginForm = () => {
               value={enteredEmail}
               required
             />
-            {enteredEmailIsInvalid &&
+            {enteredEmailIsInvalid && (
               <p className=" text-red-700 text-sm  ">
                 Please enter a valid email.
-              </p>}
-            {errorMessages &&
+              </p>
+            )}
+            {errorMessages && (
               <p className=" text-red-700 text-sm  ">
                 Wrong email or password.
-              </p>}
+              </p>
+            )}
           </div>
           <div className=" ml-8 mb-6">
-            {enteredPassword.length > 0 &&
-              <label htmlFor="password">password</label>}
+            {enteredPassword.length > 0 && (
+              <label htmlFor="password">password</label>
+            )}
             <input
               className=" flex border border-2 border-gray-300 rounded-lg w-72 "
               type="password"
@@ -131,14 +136,12 @@ const LoginForm = () => {
               Sign In
             </button>
             <Link href="/register" className="text-sm pl-3">
-              {' '}
+              {" "}
               dont have account?
             </Link>
           </div>
         </div>
-
       </form>
-
     </Fragment>
   );
 };

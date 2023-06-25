@@ -74,7 +74,7 @@ const[counter,setCounter]=useState(false)
 
   return (
     <Fragment>
-      <div className="capitalize ">
+      <div className="capitalize">
      <div class="" >
      <div class="bg-gray-200 m-5 shadow-lg  overflow-hidden relative pt-5">
     <div class="m-20 bg-white shadow-lg rounded-3xl  text-start w-1/2 py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">

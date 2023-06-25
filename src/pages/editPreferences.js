@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { UserActions } from "@/store/UserSlice";
 import { useRouter } from "next/router";
-const Preferences = (props) => {
+const editPreferences = () => {
+  const user = useSelector((state) => state.user);
   const router = useRouter();
   const [next, setNext] = useState(0);
-  const userId= useSelector((state)=>state.user.id);
   const dispatch = useDispatch();
   const nextHandler = () => {
     setNext((prev) => (prev = prev + 1));
@@ -15,7 +15,7 @@ const Preferences = (props) => {
   const backhandler = () => {
     setNext((prev) => (prev = prev - 1));
   };
-///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
   //hotel aminities
   const hotelAminities = [
     { id: "1", text: "Restaurant" },
@@ -34,8 +34,11 @@ const Preferences = (props) => {
     { id: "14", text: "Airport transportations" },
     { id: "15", text: "Room Service" },
   ];
-
-  const [choosenAminities, setChoosenAminities] = useState([]);
+ 
+  const [choosenAminities, setChoosenAminities] = useState([
+    restaurantCuisinesLikes,
+  ]);
+  console.log(choosenAminities);
   const validAminities = choosenAminities.length > 4 ? true : false;
   const hotelClickHandler = (event) => {
     if (!choosenAminities.includes(event.target.id)) {
@@ -51,6 +54,7 @@ const Preferences = (props) => {
   const clearAminities = () => {
     setChoosenAminities([]);
   };
+  /////////////////////////////////////////////////////////////////
   /////restaurants
   const cuisine_types = [
     { id: "1", text: "Mediterranean" },
@@ -79,7 +83,8 @@ const Preferences = (props) => {
         choosenCusines.filter((item) => item !== event.target.id)
       );
     }
-  
+    console.log(event.target.id);
+    console.log(choosenCusines);
   };
   const clearCusines = () => {
     setChoosenCusines([]);
@@ -103,7 +108,11 @@ const Preferences = (props) => {
     { id: "14", text: "Zoo" },
     { id: "15", text: "Library" },
   ];
-  const [choosenAttractions, setChoosenAttractions] = useState([]);
+  const initialAttractions = user.isLoggedin
+    ? user.attractionPreferencesLikes
+    : [];
+  const [choosenAttractions, setChoosenAttractions] =
+    useState(initialAttractions);
   const validAttractions = choosenAttractions.length > 4 ? true : false;
   const attractionsClickHandler = (event) => {
     if (!choosenAttractions.includes(event.target.id)) {
@@ -119,49 +128,52 @@ const Preferences = (props) => {
   const clearAttractions = () => {
     setChoosenAttractions([]);
   };
-  /////
-  async function  submitHandler(){
-
-    console.log("user id edd: ",userId);
-    console.log("Chosen Aminties: ",choosenAminities);
-    console.log("Chosen Cusines: ",choosenCusines);
-    console.log("Chosen Attractions: ",choosenAttractions);
-  
-    const response = await  fetch (`http://localhost:4000/users/preferences/${userId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Origin': '*' 
-      },
-      body: JSON.stringify ({
-        restaurantCuisinesLikes: choosenCusines,
-        hotelPreferencesLikes: choosenAminities,
-        attractionPreferencesLikes: choosenAttractions,
-    }),
-    });
-    console.log("response: ",response)
-    if (response.status ===200) {
-
-      console.log("response.ok");
-      const data = await  response.json ();
-      console.log("Data: ",data);
-
-      dispatch (UserActions.editUserPref ({
-        
-        hotelPreferencesLikes:data.hotelPreferencesLikes,
-        restaurantCuisinesLikes:data.restaurantCuisinesLikes,
-        attractionPreferencesLikes:data.attractionPreferencesLikes,
-
-      } ));
-      console.log ('Success in preferences :', data.id);
-      
-      // console.log ('UserID: ', userIDState);
-    } else {
-      console.error ('Error:', response.status);
-    }
-    router.replace ('/');
-
-  };
+  ////////
+  async function submitHandler() {
+    //     console.log("user id edd: ",userId);
+    //     console.log("Chosen Aminties: ",choosenAminities);
+    //     console.log("Chosen Cusines: ",choosenCusines);
+    //     console.log("Chosen Attractions: ",choosenAttractions);
+    //     const response = await fetch(
+    //       `http://127.0.0.1:4000/users/preferences/${userId}`,
+    //       {
+    //         // const response = await  fetch (`http://127.0.0.1:4000/users/${userId}/restaurants/cuisines`, {
+    //         method: "PUT",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //           // 'Access-Control-Allow-Origin': '*'
+    //         },
+    //         body: JSON.stringify({
+    //           restaurantCuisinesLikes: choosenCusines,
+    //           hotelPreferencesLikes: choosenAminities,
+    //           attractionPreferencesLikes: choosenAttractions,
+    //         }),
+    //       }
+    //     );
+    //     console.log("response: ", response);
+    //     if (response.status === 200) {
+    //       console.log("response.ok");
+    //       const data = await response.json();
+    //       console.log("Data: ", data);
+    //       dispatch(
+    //         UserActions.logIn({
+    //           id: data.id,
+    //           firstName: data.firstName,
+    //           secondName: data.secondName,
+    //           email: data.email,
+    //           country: data.country,
+    //           hotelPreferencesLikes: data.hotelPreferencesLikes,
+    //           restaurantCuisinesLikes: data.restaurantCuisinesLikes,
+    //           attractionPreferencesLikes: data.attractionPreferencesLikes,
+    //         })
+    //       );
+    //       console.log("Success in preferences :", data.id);
+    //       // console.log ('UserID: ', userIDState);
+    //     } else {
+    //       console.error("Error:", response.status);
+    //     }
+    //     router.replace("/");
+  }
   return (
     <Fragment>
       <div className="capitalize flex flex-col justify-center items-center  ">
@@ -292,4 +304,4 @@ const Preferences = (props) => {
     </Fragment>
   );
 };
-export default Preferences;
+export default editPreferences;
