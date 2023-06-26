@@ -8,7 +8,7 @@ const RecommendCard = (props) => {
   const viewHandler = () => {
     router.push({
       pathname: "/viewInfo",
-      query: { id: props.id },
+      query: { id: props.id ,type:props.type},
     });
   };
   return (
@@ -20,14 +20,14 @@ const RecommendCard = (props) => {
         ></img>
         <div className=" grid-cards">
           <div>
-            <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">{`${props.name}`}</h5>
+            <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">{props.name}</h5>
           </div>
           <div className="flex justify-start ">
-            <p className=" desc text-xl  font-normal text-gray-700 dark:text-gray-400 truncate">{`${props.desc}`}</p>
+            <p className=" desc text-xl  font-normal text-gray-700 dark:text-gray-400 truncate">{props.desc} {props.cuisines.slice(0,28)}</p>
           </div>
           <div>
             <p className=" text-xl font-normal text-gray-700 dark:text-gray-400">
-             Rating: {props.rating}
+             Rating: {props.rating} {props.ratings}
             </p>
           </div>
           <div className=" view flex justify-center">

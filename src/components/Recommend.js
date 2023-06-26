@@ -13,7 +13,7 @@ const Recommend = (props) => {
         return response.json();
       })
       .then((data) => {
-        console.log("Data hotels : ", data);
+        console.log(`Data ${props.type} : `, data);
         setRecommend(data);
       })
       .catch((error) => console.error(error));
@@ -22,7 +22,7 @@ const Recommend = (props) => {
   return (
     <Fragment>
       <div className="reco-card rounded-xl shadow-xl bg-blue-200" >
-        <div className="">
+        <div className=" capitalize">
           <p className=" text-3xl">
             {props.type} for you
           </p>
@@ -35,10 +35,14 @@ const Recommend = (props) => {
               className=" reco-result-item"
               >
             <RecommendCard
-              desc={item.description || ""}
+              desc={item.keywords || ""}
               name={item.name}
-              src={item.imageUrl}
-              rating={item.rating}
+              src={item.image_url}
+              rating={item.rating || ''}
+              ratings={item.ratings || ''}
+              id={item.id}
+              cuisines={item.cuisines||''}
+              type={props.type}
               />
           </div>
         ))}

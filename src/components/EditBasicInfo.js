@@ -55,7 +55,7 @@ const EditBasicInfo = (props) => {
   const dispatch = useDispatch();
   async function doneHandler() {
     console.log(firstName, secondName, enteredEmail);
-    const response = await fetch("http://localhost:4000/users", {
+    const response = await fetch(`http://localhost:4000/users/${userID}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

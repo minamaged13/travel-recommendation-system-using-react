@@ -1,24 +1,37 @@
 import Image from "next/image";
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 const ViewInfo = (props) => {
-  const id= props.id
-  const imageSrc = "/travel.png";
+  const [dataToShow, setDataToShow] = useState();
+  async function getData() {
+    const response = await fetch(`http://localhost:4000/hotel/1`);
+    if (response.ok) {
+      console.log("response.ok");
+      const data = await response.json();
+      setDataToShow(data);
+      console.log("Data: after request ", data);
+      console.log(dataToShow)
+    }
+  }
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <Fragment>
-      <div className="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden">
+      {/* <div className="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden">
         <Image
           className="h-full w-full object-cover"
-          src={imageSrc}
+          src={dataToShow.imageUrl}
           width={400}
           height={300}
         />
       </div>
       <div className="p-4"></div>
       <div className="p-8">
-        <p className="text-gray-800 text-5xl "> name</p>
-        <p className="text-gray-500 text-sm">description</p>
-      </div>
+        <p className="text-gray-800 text-5xl "> {dataToShow.name}</p>
+        <p className="text-gray-500 text-sm">{dataToShow.description}</p>
+      </div> */}
     </Fragment>
   );
 };
