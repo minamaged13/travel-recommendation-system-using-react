@@ -6,6 +6,7 @@ const MyPreferences = () => {
   // const preferences = useSelector((state) => state.user.preferences);
   const router = useRouter();
   const restaurantCuisinesLikes = useSelector((state)=> state.user.restaurantCuisinesLikes);
+  console.log("restaurantCuisinesLikes")
   console.log(restaurantCuisinesLikes)
   const hotelPreferencesLikes = useSelector((state)=> state.user.hotelPreferencesLikes);
   const attractionPreferencesLikes = useSelector((state)=> state.user.attractionPreferencesLikes);
