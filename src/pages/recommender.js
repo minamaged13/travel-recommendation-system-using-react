@@ -14,7 +14,7 @@ const recommender = () => {
   useEffect(()=>{
     setTimeout(()=>{
       setLoading(!loading)
-    },7000)
+    },10000)
 
   },[selectedCity])
   return (

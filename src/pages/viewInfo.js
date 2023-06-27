@@ -4,10 +4,10 @@ import {Fragment} from 'react';
 const viewInfo = () => {
   const router = useRouter ();
   const query = router.query;
-  console.log (query.id);
+  console.log (query);
   return (
     <Fragment>
-      <ViewInfo id={query.id} />
+      <ViewInfo id={query.id} type={query.type} />
 
     </Fragment>
   );

@@ -42,7 +42,7 @@ const Preferences = (props) => {
       setChoosenAminities((prev) => [...prev, event.target.id]);
     } else {
       setChoosenAminities(
-        choosenAminities.filter((item) => item !== event.target.id)
+        choosenAminities.filter((item) => item !== parseInt(event.target.id))
       );
     }
     console.log(event.target.id);
@@ -73,10 +73,10 @@ const Preferences = (props) => {
   const validCausines = choosenCusines.length > 4 ? true : false;
   const restaurantClickHandler = (event) => {
     if (!choosenCusines.includes(event.target.id)) {
-      setChoosenCusines((prev) => [...prev, event.target.id]);
+      setChoosenCusines((prev) => [...prev, parseInt(event.target.id)]);
     } else {
       setChoosenCusines(
-        choosenCusines.filter((item) => item !== event.target.id)
+        choosenCusines.filter((item) => item !== parseInt(event.target.id))
       );
     }
   
@@ -107,10 +107,10 @@ const Preferences = (props) => {
   const validAttractions = choosenAttractions.length > 4 ? true : false;
   const attractionsClickHandler = (event) => {
     if (!choosenAttractions.includes(event.target.id)) {
-      setChoosenAttractions((prev) => [...prev, event.target.id]);
+      setChoosenAttractions((prev) => [...prev, parseInt(event.target.id)]);
     } else {
       setChoosenAttractions(
-        choosenAttractions.filter((item) => item !== event.target.id)
+        choosenAttractions.filter((item) => item !== parseInt(event.target.id))
       );
     }
     console.log(event.target.id);
@@ -134,9 +134,9 @@ const Preferences = (props) => {
         // 'Access-Control-Allow-Origin': '*' 
       },
       body: JSON.stringify ({
-        restaurantCuisinesLikes: choosenCusines,
-        hotelPreferencesLikes: choosenAminities,
-        attractionPreferencesLikes: choosenAttractions,
+        restaurantCuisines: choosenCusines,
+        hotelPreferences: choosenAminities,
+        attractionPreferences: choosenAttractions,
     }),
     });
     console.log("response: ",response)

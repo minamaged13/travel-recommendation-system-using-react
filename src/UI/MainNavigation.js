@@ -24,6 +24,10 @@ function MainNavigation() {
                             <Link class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/recommender">
                                 Explore
                             </Link>}
+                            {loggedIn&&
+                            <Link class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/plan">
+                                Plan
+                            </Link>}
                             {!loggedIn &&
                             <Link class="text-black-300  hover:text-gray-400  px-3 py-2 rounded-md text-sm font-medium" href="/register">
                                 Register

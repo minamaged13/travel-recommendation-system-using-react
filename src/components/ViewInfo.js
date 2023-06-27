@@ -2,9 +2,9 @@ import Image from "next/image";
 import React, { Fragment, useState, useEffect } from "react";
 
 const ViewInfo = (props) => {
-  const [dataToShow, setDataToShow] = useState();
+  const [dataToShow, setDataToShow] = useState({});
   async function getData() {
-    const response = await fetch(`http://localhost:4000/hotel/1`);
+    const response = await fetch(`http://localhost:4000/${props.type}/${props.id}`);
     if (response.ok) {
       console.log("response.ok");
       const data = await response.json();
@@ -16,13 +16,16 @@ const ViewInfo = (props) => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    console.log("Data: ", dataToShow);
+  }, [dataToShow]);
 
   return (
     <Fragment>
-      {/* <div className="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden">
+      <div className="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden">
         <Image
           className="h-full w-full object-cover"
-          src={dataToShow.imageUrl}
+          src={dataToShow.image_url}
           width={400}
           height={300}
         />
@@ -31,7 +34,7 @@ const ViewInfo = (props) => {
       <div className="p-8">
         <p className="text-gray-800 text-5xl "> {dataToShow.name}</p>
         <p className="text-gray-500 text-sm">{dataToShow.description}</p>
-      </div> */}
+      </div>
     </Fragment>
   );
 };

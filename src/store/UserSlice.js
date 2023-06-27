@@ -1,7 +1,7 @@
 import User from '@/models/User';
 import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
-  id: 0,
+  id: 3,
   firstName: '',
   secondName: '',
   email: '',

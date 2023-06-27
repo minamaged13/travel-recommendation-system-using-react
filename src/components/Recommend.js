@@ -2,50 +2,44 @@ import RecommendCard from "@/UI/RecommendCard";
 import { Fragment, useEffect, useState } from "react";
 const Recommend = (props) => {
   const [recommend, setRecommend] = useState([]);
-  useEffect(() => {
+  async function fetchData() {
     console.log("selectedCity", props.selectedCity);
     console.log("userID in page recommender: ", props.userID);
     //ToDO: pass the user id & city name to the backend url
-    fetch(
+    const response = await fetch(
       `http://localhost:4000/${props.type}/recommender/${props.userID}/${props.selectedCity}`
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(`Data ${props.type} : `, data);
-        setRecommend(data);
-      })
-      .catch((error) => console.error(error));
+    );
+    const data = await response.json();
+    console.log(data);
+    setRecommend(data);
+  }
+
+  useEffect(() => {
+    fetchData();
   }, [props.selectedCity]);
 
   return (
     <Fragment>
-      <div className="reco-card rounded-xl shadow-xl bg-blue-200" >
+      <div className="reco-card rounded-xl shadow-xl bg-blue-200">
         <div className=" capitalize">
-          <p className=" text-3xl">
-            {props.type} for you
-          </p>
+          <p className=" text-3xl">{props.type} for you</p>
         </div>
 
         <div className=" reco-results">
-        {recommend.map((item) => (
-              <div
-              key={item.id}
-              className=" reco-result-item"
-              >
-            <RecommendCard
-              desc={item.keywords || ""}
-              name={item.name}
-              src={item.image_url}
-              rating={item.rating || ''}
-              ratings={item.ratings || ''}
-              id={item.id}
-              cuisines={item.cuisines||''}
-              type={props.type}
+          {recommend.length >0 && recommend.map((item) => (
+            <div key={item.id} className=" reco-result-item">
+              <RecommendCard
+                desc={item.keywords || ""}
+                name={item.name}
+                src={item.image_url || item.imageUrl}
+                rating={item.rating || ""}
+                ratings={item.ratings || ""}
+                id={item.id}
+                cuisines={item.cuisines || ""}
+                type={props.type}
               />
-          </div>
-        ))}
+            </div>
+          ))}
         </div>
       </div>
     </Fragment>
