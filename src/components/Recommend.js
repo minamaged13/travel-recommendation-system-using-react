@@ -33,7 +33,8 @@ const Recommend = (props) => {
                 name={item.name}
                 src={item.image_url || item.imageUrl}
                 rating={item.rating || ""}
-                ratings={item.ratings || ""}
+                ratings={item.ratings || item.rate||''}
+                
                 id={item.id}
                 cuisines={item.cuisines || ""}
                 type={props.type}

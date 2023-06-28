@@ -11,8 +11,8 @@ const initialState = {
   { id: "9", text: "Wifi" },
   { id: "10", text: "Pool" },],
   attractionPreferencesLikes:[],
-  // isLoggedin: true,
-  isLoggedin: false,
+  isLoggedin: true,
+  // isLoggedin: false,
 
   // info: {},
   // preferences: {

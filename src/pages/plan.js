@@ -1,9 +1,15 @@
-import { Fragment } from "react";
+import GetLocation from "@/components/GetLocation";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import { Fragment, useState } from "react";
 
 const plan = () => {
+  const [togglePanel,setTogglePanel]= useState(false);
+  const toggle= ()=>{
+    setTogglePanel(!togglePanel);
+  }
   return (
     <Fragment>
-      <form className="flex justify-center capitalize p-6 rounded-md">
+      {!togglePanel && <form className="flex justify-center capitalize p-6 rounded-md">
         <div className=" form-plan-container  bg-gray-100 rounded-md shadow-2xl">
           <div className="form-plan-item ">
             <label className="text-2xl mb-2">Enter number of days</label>
@@ -82,15 +88,18 @@ const plan = () => {
               <option value="Sharm el sheikh">Sharm El Sheikh</option>
             </select>
           </div>
-          <div className="bg-red-300 form-plan-item">hello</div>
+          
           <div className=" form-plan-item form-plan-button">
-            <button className=" w-24 text-xl disabled:cursor-not-allowed h-12   bg-blue-500 text-white  px-4 rounded-lg  transition delay-100 duration-300 ease-in-out">
+            <button onClick={toggle} className=" w-24 text-xl disabled:cursor-not-allowed h-12   bg-blue-500 text-white  px-4 rounded-lg  transition delay-100 duration-300 ease-in-out">
               {" "}
-              submit
+             next
             </button>
           </div>
         </div>
-      </form>
+      </form>}
+      <div>
+     <GetLocation/>
+      </div>
     </Fragment>
   );
 };
