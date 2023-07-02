@@ -45,9 +45,9 @@
 }
 .form-plan-container{
   width: 365px;
-  height: 600px;
+  height: 650px;
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   
 
 }
@@ -59,6 +59,7 @@
 .form-plan-button{
  display: flex;
  justify-content: center;
+ 
 }
 .location{
   width: 900px;

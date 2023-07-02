@@ -16,7 +16,7 @@ const MoreLikeThis = (props) => {
                 desc={item.keywords || ""}
                 name={item.name}
                 src={item.image_url || item.imageUrl}
-                rating={item.rating || ""}
+                rating={item.rating ||item.rate|| ""}
                 ratings={item.ratings || ""}
                 id={item.id}
                 cuisines={item.cuisines || ""}

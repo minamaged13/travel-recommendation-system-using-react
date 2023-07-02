@@ -10,7 +10,7 @@ function GetLocation() {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [30.8025, 26.8206], // San Francisco
-      zoom: 12
+      zoom: 8
     });
 
     const marker = new mapboxgl.Marker({
