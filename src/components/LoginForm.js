@@ -58,14 +58,14 @@ const LoginForm = () => {
 
       dispatch(
         UserActions.logIn({
-          id: data.id,
+          // id: data.id,
           firstName: data.firstName,
           secondName: data.secondName,
           email: data.email,
           nationality: data.nationality,
-          hotelPreferencesLikes: data.hotelPreferencesLikes,
-          restaurantCuisinesLikes: data.restaurantCuisinesLikes,
-          attractionPreferencesLikes: data.attractionPreferencesLikes,
+          // hotelPreferencesLikes: data.hotelPreferencesLikes,
+          // restaurantCuisinesLikes: data.restaurantCuisinesLikes,
+          // attractionPreferencesLikes: data.attractionPreferencesLikes,
           //attraction
         })
       );

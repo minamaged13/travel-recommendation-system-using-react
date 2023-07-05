@@ -46,7 +46,7 @@ const DisplayBasicInfo = (props) => {
               {" "}
               Nationality :{" "}
             </label>
-            <p className="text-2xl"> {user.nationality}</p>
+            <p className="text-2xl"> Saudi</p>
           </div>
 
         </div>

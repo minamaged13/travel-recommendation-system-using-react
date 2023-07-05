@@ -40,6 +40,13 @@
   display: grid;
   grid-template-rows: repeat(4, 1fr);
 }
+.grid-plan-cards {
+  padding: 30px;
+margin-left: 20px;
+  height: 300px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+}
 .desc {
   white-space: pre-wrap;
 }

@@ -5,6 +5,11 @@ import { useDispatch } from "react-redux";
 import { UserActions } from "@/store/UserSlice";
 import { useRouter } from "next/router";
 const editPreferences = () => {
+  const restaurantCuisinesLikes = useSelector((state)=> state.user.restaurantCuisinesLikes);
+  // console.log("restaurantCuisinesLikes")
+  // console.log(restaurantCuisinesLikes)
+  const hotelPreferencesLikes = useSelector((state)=> state.user.hotelPreferencesLikes);
+  const attractionPreferencesLikes = useSelector((state)=> state.user.attractionPreferencesLikes);
   const user = useSelector((state) => state.user);
   const router = useRouter();
   const [next, setNext] = useState(0);
@@ -36,7 +41,7 @@ const editPreferences = () => {
   ];
  
   const [choosenAminities, setChoosenAminities] = useState([
-    restaurantCuisinesLikes,
+    ...restaurantCuisinesLikes
   ]);
   console.log(choosenAminities);
   const validAminities = choosenAminities.length > 4 ? true : false;
@@ -73,7 +78,7 @@ const editPreferences = () => {
     { id: "14", text: "French" },
     { id: "15", text: "International" },
   ];
-  const [choosenCusines, setChoosenCusines] = useState([]);
+  const [choosenCusines, setChoosenCusines] = useState([...hotelPreferencesLikes]);
   const validCausines = choosenCusines.length > 4 ? true : false;
   const restaurantClickHandler = (event) => {
     if (!choosenCusines.includes(event.target.id)) {
@@ -108,11 +113,9 @@ const editPreferences = () => {
     { id: "14", text: "Zoo" },
     { id: "15", text: "Library" },
   ];
-  const initialAttractions = user.isLoggedin
-    ? user.attractionPreferencesLikes
-    : [];
+  
   const [choosenAttractions, setChoosenAttractions] =
-    useState(initialAttractions);
+    useState([...attractionPreferencesLikes]);
   const validAttractions = choosenAttractions.length > 4 ? true : false;
   const attractionsClickHandler = (event) => {
     if (!choosenAttractions.includes(event.target.id)) {
@@ -172,7 +175,7 @@ const editPreferences = () => {
     //     } else {
     //       console.error("Error:", response.status);
     //     }
-    //     router.replace("/");
+        router.replace("/");
   }
   return (
     <Fragment>
@@ -290,7 +293,7 @@ const editPreferences = () => {
               className=" disabled:cursor-not-allowed  disabled:bg-gray-400    text-3xl mt-4 border border-3 rounded-2xl bg-blue-500 content-center h-16 w-36  ml-20"
             >
               {" "}
-              submit{" "}
+              Update{" "}
             </button>
             <button
               onClick={backhandler}

@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 
 import Recommend from "@/components/Recommend";
 const recommender = () => {
-  const userID = useSelector((state) => state.user.id);
+  const userID = 3;
+  // const userID = useSelector((state) => state.user.id);
   const [loading,setLoading]=useState(true);
   const [selectedCity, setSelectedCity] = useState("Cairo");
   const selectedCityHandler = (event) => {

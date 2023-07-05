@@ -127,7 +127,7 @@ const plan = () => {
               </label>
               <input
                 type="text"
-                className=" text-2xl text-center w-80  rounded h-12 mt-3"
+                className=" text-md  w-80  rounded h-12 mt-3"
               />
             </div>
             <div className=" form-plan-item form-plan-button">
