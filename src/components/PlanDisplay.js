@@ -5,112 +5,7 @@ const PlanDisplay = (props) => {
   console.log("data from display ", props.info);
   const [loading,setLoading]=useState(true);
   
-  const data = {
-    "0": [
-      {
-        "city": "Cairo",
-        "close_time": "11PM",
-        "location": [
-          "30.112315",
-          "31.3438507"
-        ],
-        "name": "Ruby Tuesday",
-        "open_time": "12AM"
-      },
-      {
-        "attraction_name": "Nature Stillness Park",
-        "city": "cairo",
-        "close_time": "12AM",
-        "location": [
-          30.11386,
-          31.33632
-        ],
-        "open_time": "6AM"
-      },
-      {
-        "attraction_name": "The Child Museum",
-        "city": "cairo",
-        "close_time": "4PM",
-        "location": [
-          30.10224,
-          31.33695
-        ],
-        "open_time": "9AM"
-      },
-      {
-        "city": "Cairo",
-        "close_time": "12AM",
-        "location": [
-          "30.0918863",
-          "31.3407048"
-        ],
-        "name": "Rossini Restaurant",
-        "open_time": "12PM"
-      },
-      {
-        "attraction_name": "Egyptian Air Force Museum",
-        "city": "cairo",
-        "close_time": "5PM",
-        "location": [
-          30.09662,
-          31.35162
-        ],
-        "open_time": "9AM"
-      }
-    ],
-    "1": [
-      {
-        "city": "Cairo",
-        "close_time": "12AM",
-        "location": [
-          "30.0730307",
-          "31.2220123"
-        ],
-        "name": "Maat",
-        "open_time": "8AM"
-      },
-      {
-        "attraction_name": "Play Time Park",
-        "city": "cairo",
-        "close_time": "12AM",
-        "location": [
-          30.06984,
-          31.22703
-        ],
-        "open_time": "6AM"
-      },
-      {
-        "attraction_name": "Rawdet ElNil Garden",
-        "city": "cairo",
-        "close_time": "12AM",
-        "location": [
-          30.07621,
-          31.22853
-        ],
-        "open_time": "10AM"
-      },
-      {
-        "city": "Cairo",
-        "close_time": "3AM",
-        "location": [
-          "30.0722263",
-          "31.2281158"
-        ],
-        "name": "Bab El Nil Restaurant",
-        "open_time": "11AM"
-      },
-      {
-        "attraction_name": "Mamsha Ahl Misr",
-        "city": "cairo",
-        "close_time": "12AM",
-        "location": [
-          30.060,
-          31.227
-        ],
-        "open_time": "6AM"
-      }
-    ]
-  };
+  
   useEffect(()=>{
     setTimeout(()=>{
       setLoading(!loading)
@@ -144,27 +39,12 @@ const PlanDisplay = (props) => {
       console.log("response.ok");
       const data = await response.json();
       console.log("Data Of plan: ", data);
-      // Assuming the data is stored in a variable called "data"
-      // for (let day in data) {
-      //   // "day" is the index of the current array, e.g. "0", "1", etc.
-      //   let locations = data[day]; // Get the current array of locations
-      //   for (let i = 0; i < locations.length; i++) {
-      //     let location = locations[i]; // Get the current location object
-      //     // Access the properties of the location object, e.g.
-      //     console.log(location.city);
-      //     console.log(location.name);
-      //     console.log(location.location[0]); // latitude
-      //     console.log(location.location[1]); // longitude
-      //     console.log(location.open_time);
-      //     console.log(location.close_time);
-      //   }
-      // }
       setPlanData(data);
     }
   }
-  // useEffect(() => {
-  //   loadPlanData();
-  // }, []);
+   useEffect(() => {
+     loadPlanData();
+   }, []);
   console.log("inside plan display ", props.info);
   return (
     <Fragment>
@@ -195,7 +75,7 @@ const PlanDisplay = (props) => {
           </div>
         )}
         {!loading&&
-        dataArray.map((item, index) => (
+        planData.map((item, index) => (
           <div className="m-5 p-3">
             <div className="reco-card rounded-xl shadow-xl bg-blue-200">
               <div className=" capitalize">
@@ -214,23 +94,6 @@ const PlanDisplay = (props) => {
 
 
 
-      {/* {planData.length > 0 &&
-        planData.map((item, index) => (
-          <div>
-            <div className="reco-card rounded-xl shadow-xl bg-blue-200">
-              <div className=" capitalize">
-                <p className=" text-3xl"> Day :{index}</p>
-              </div>
-              <div className=" reco-results">
-                {item.map((item, index) => (
-                  <div className=" reco-result-item">
-                    <PlanCard item={item} index={index} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))} */}
     </Fragment>
   );
 };

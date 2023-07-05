@@ -133,48 +133,48 @@ const editPreferences = () => {
   };
   ////////
   async function submitHandler() {
-    //     console.log("user id edd: ",userId);
-    //     console.log("Chosen Aminties: ",choosenAminities);
-    //     console.log("Chosen Cusines: ",choosenCusines);
-    //     console.log("Chosen Attractions: ",choosenAttractions);
-    //     const response = await fetch(
-    //       `http://127.0.0.1:4000/users/preferences/${userId}`,
-    //       {
-    //         // const response = await  fetch (`http://127.0.0.1:4000/users/${userId}/restaurants/cuisines`, {
-    //         method: "PUT",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           // 'Access-Control-Allow-Origin': '*'
-    //         },
-    //         body: JSON.stringify({
-    //           restaurantCuisinesLikes: choosenCusines,
-    //           hotelPreferencesLikes: choosenAminities,
-    //           attractionPreferencesLikes: choosenAttractions,
-    //         }),
-    //       }
-    //     );
-    //     console.log("response: ", response);
-    //     if (response.status === 200) {
-    //       console.log("response.ok");
-    //       const data = await response.json();
-    //       console.log("Data: ", data);
-    //       dispatch(
-    //         UserActions.logIn({
-    //           id: data.id,
-    //           firstName: data.firstName,
-    //           secondName: data.secondName,
-    //           email: data.email,
-    //           country: data.country,
-    //           hotelPreferencesLikes: data.hotelPreferencesLikes,
-    //           restaurantCuisinesLikes: data.restaurantCuisinesLikes,
-    //           attractionPreferencesLikes: data.attractionPreferencesLikes,
-    //         })
-    //       );
-    //       console.log("Success in preferences :", data.id);
-    //       // console.log ('UserID: ', userIDState);
-    //     } else {
-    //       console.error("Error:", response.status);
-    //     }
+        console.log("user id edd: ",userId);
+        console.log("Chosen Aminties: ",choosenAminities);
+        console.log("Chosen Cusines: ",choosenCusines);
+        console.log("Chosen Attractions: ",choosenAttractions);
+        const response = await fetch(
+          `http://127.0.0.1:4000/users/preferences/${userId}`,
+          {
+            // const response = await  fetch (`http://127.0.0.1:4000/users/${userId}/restaurants/cuisines`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              // 'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({
+              restaurantCuisinesLikes: choosenCusines,
+              hotelPreferencesLikes: choosenAminities,
+              attractionPreferencesLikes: choosenAttractions,
+            }),
+          }
+        );
+        console.log("response: ", response);
+        if (response.status === 200) {
+          console.log("response.ok");
+          const data = await response.json();
+          console.log("Data: ", data);
+          dispatch(
+            UserActions.logIn({
+              id: data.id,
+              firstName: data.firstName,
+              secondName: data.secondName,
+              email: data.email,
+              country: data.country,
+              hotelPreferencesLikes: data.hotelPreferencesLikes,
+              restaurantCuisinesLikes: data.restaurantCuisinesLikes,
+              attractionPreferencesLikes: data.attractionPreferencesLikes,
+            })
+          );
+          console.log("Success in preferences :", data.id);
+          // console.log ('UserID: ', userIDState);
+        } else {
+          console.error("Error:", response.status);
+        }
         router.replace("/");
   }
   return (

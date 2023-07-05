@@ -63,10 +63,9 @@ const LoginForm = () => {
           secondName: data.secondName,
           email: data.email,
           nationality: data.nationality,
-          // hotelPreferencesLikes: data.hotelPreferencesLikes,
-          // restaurantCuisinesLikes: data.restaurantCuisinesLikes,
-          // attractionPreferencesLikes: data.attractionPreferencesLikes,
-          //attraction
+          hotelPreferencesLikes: data.hotelPreferencesLikes,
+          restaurantCuisinesLikes: data.restaurantCuisinesLikes,
+          attractionPreferencesLikes: data.attractionPreferencesLikes,
         })
       );
       console.log("Success:", data.id);
